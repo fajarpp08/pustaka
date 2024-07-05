@@ -55,10 +55,10 @@
                         @enderror
                     </div>
                     <div class="sign__group">
-                        <input type="nosim" class="sign__input" placeholder="Masukkan Nomor SIM"
-                            class="form-control @error('nosim') is-invalid @enderror" value="{{ old('nosim') }}"
-                            id="nosim" aria-describedby="emailHelp" name="nosim">
-                        @error('nosim')
+                        <input type="email" class="sign__input" placeholder="Masukkan Email"
+                            class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                            id="email" aria-describedby="emailHelp" name="email">
+                        @error('email')
                             <div class="error">
                                 {{ $message }}
                             </div>
@@ -74,7 +74,17 @@
                             </div>
                         @enderror
                     </div>
-
+                    <div class="sign__group">
+                        <input type="text" class="sign__input" placeholder="Masukkan Nomor Anggota"
+                            class="form-control @error('noanggota') is-invalid @enderror"
+                            value="{{ old('noanggota') }}" id="noanggota" aria-describedby="emailHelp"
+                            name="noanggota">
+                        @error('noanggota')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <div class="sign__group">
                         <input type="password" class="sign__input" placeholder="Masukkan Password"
                             class="form-control @error('password') is-invalid @enderror" id="password" name="password">

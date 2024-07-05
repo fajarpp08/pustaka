@@ -6,9 +6,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthAccess;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
 Route::get('/home', function () {
     return redirect('/dashboardadmin');
 });
@@ -54,5 +56,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Route Register
-// Route::get('/register', [AuthController::class, 'register'])->name('register');
-// Route::post('/register', [AuthController::class, 'saveRegister'])->name('saveRegister');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'saveRegister'])->name('saveRegister');

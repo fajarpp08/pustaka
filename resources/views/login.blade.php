@@ -38,10 +38,10 @@
                     </a>
 
                     <div class="sign__group">
-                        <input type="nosim" class="sign__input" placeholder="Masukkan Nomor SIM"
-                            class="form-control @error('nosim') is-invalid @enderror" value="{{ old('nosim') }}"
-                            id="nosim" aria-describedby="emailHelp" name="nosim">
-                        @error('nosim')
+                        <input type="email" class="sign__input" placeholder="Masukkan Nomor SIM"
+                            class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                            id="email" aria-describedby="emailHelp" name="email">
+                        @error('email')
                             <div class="error">
                                 {{ $message }}
                             </div>
@@ -88,7 +88,9 @@
                     <span class="sign__text">Don't have an account? <a href="{{ route('register') }}">Sign
                             up!</a></span>
 
-                    <span class="sign__text"><a href="https://wa.me/6281218173646?text=Halo,%20Tolong%20bantu%20saya%20lupa%20password%20akun%20rental%20mobil%20saya">Forgot password?</a></span>
+                    <span class="sign__text"><a
+                            href="https://wa.me/6281218173646?text=Halo,%20Tolong%20bantu%20saya%20lupa%20password%20akun%20rental%20mobil%20saya">Forgot
+                            password?</a></span>
                 </form>
                 <!-- end authorization form -->
             </div>
