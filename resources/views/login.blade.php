@@ -38,7 +38,7 @@
                     </a>
 
                     <div class="sign__group">
-                        <input type="email" class="sign__input" placeholder="Masukkan Nomor SIM"
+                        <input type="email" class="sign__input" placeholder="Masukkan Email"
                             class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
                             id="email" aria-describedby="emailHelp" name="email">
                         @error('email')

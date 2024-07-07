@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthAccess;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PengembalianController;
 
 
 Route::middleware(['guest'])->group(function () {
@@ -22,14 +26,15 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::middleware([AuthAccess::class . ':Admin'])->group(function () {
+    Route::middleware([authAccess::class . ':Admin'])->group(function () {
         // ROUTE Admin Access only
         Route::get('/dashboardadmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboardAdmin');
 
         Route::resource('useradm', UserController::class);
-        // Route::resource('mobil', MobilController::class);
-        // Route::resource('sewa', SewaController::class);
-        // Route::resource('pengembalian', PengembalianController::class);
+        Route::resource('data-kategori', KategoriController::class);
+        Route::resource('data-buku', BukuController::class);
+        Route::resource('data-pinjam', PeminjamanController::class);
+        Route::resource('data-pengembalian', PengembalianController::class);
         // // laporan sewa
         // Route::get('/laporansewa', [SewaController::class, 'laporan'])->name('laporansewa');
         // Route::post('/cetak_laporansewa', [SewaController::class, 'cetakLaporan'])->name('cetak_laporansewa');
@@ -40,15 +45,15 @@ Route::middleware(['auth'])->group(function () {
 
     // ROUTE User / Login Access Only
     Route::get('/dashboarduser', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
-    // Route::get('/mobiluser', [DashboardController::class, 'mobilUser'])->name('mobilUser');
-    // Route::get('/mobil/detail/{id}', [DashboardController::class, 'mobilDetail'])->name('mobil.detail');
-    // Route::get('/account', [DashboardController::class, 'account'])->name('account');
+    Route::get('/buku', [DashboardController::class, 'buku'])->name('buku');
+    Route::get('/buku/detail/{id}', [DashboardController::class, 'bukuDetail'])->name('buku.detail');
+    Route::get('/account', [DashboardController::class, 'account'])->name('account');
 
     // Peminjaman User
-    // Route::get('/rental/form/{mobil_id}', [SewaController::class, 'formSewa'])->name('rental.form');
-    // Route::post('/rental/create', [SewaController::class, 'createSewa'])->name('rental.create');
-    // Route::get('/rentalan', [SewaController::class, 'rentalan'])->name('rentalan');
-    // Route::post('/kembalikan/{rental}', [SewaController::class, 'kembalikan'])->name('kembalikan');
+    Route::get('/pinjam/form/{buku_id}', [PeminjamanController::class, 'formPeminjaman'])->name('pinjam.form');
+    Route::post('/pinjam/create', [PeminjamanController::class, 'createPeminjaman'])->name('pinjam.create');
+    Route::get('/pinjaman', [PeminjamanController::class, 'pinjaman'])->name('pinjaman');
+    Route::post('/kembalikan/{pinjam}', [PeminjamanController::class, 'kembalikan'])->name('kembalikan');
 
     // Route fitur search
     // Route::get('/mobils/search', [MobilController::class, 'searchByName'])->name('mobils.searchname');

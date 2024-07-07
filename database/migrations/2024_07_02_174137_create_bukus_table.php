@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('sinopsis');
             $table->text('gambar_buku')->nullable();
             $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('SET DEFAULT');
             $table->timestamps();
         });
     }

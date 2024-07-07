@@ -13,20 +13,25 @@
             </a>
         </li>
         <li class="">
-            <a class="" href="/mobil" aria-expanded="false">
+            <a class="" href="/data-kategori" aria-expanded="false">
                 <img src="../assets-admin/img/menu-icon/car-rental.svg" alt>
-                <span>Data Mobil</span>
+                <span>Data Kategori</span>
             </a>
         </li>
-
+        <li class="">
+            <a class="" href="/data-buku" aria-expanded="false">
+                <img src="../assets-admin/img/menu-icon/car-rental.svg" alt>
+                <span>Data Buku</span>
+            </a>
+        </li>
         <li class>
             <a class="has-arrow" href="#" aria-expanded="false">
                 <img src="../assets-admin/img/menu-icon/2.svg" alt>
                 <span>Data Transaksi</span>
             </a>
             <ul>
-                <li><a href="/peminjaman">Data Peminjaman</a></li>
-                <li><a href="/pengembalian">Data Pengembalian</a></li>
+                <li><a href="/data-peminjaman">Data Peminjaman</a></li>
+                <li><a href="/data-pengembalian">Data Pengembalian</a></li>
             </ul>
         </li>
         <li class>

@@ -7,36 +7,36 @@
                     <div class="white_box mb_30">
                         <div class="box_header ">
                             <div class="main-title">
-                                <h3 class="mb-0">Add Data Mobil</h3>
+                                <h3 class="mb-0">Add Data Buku</h3>
                             </div>
                         </div>
-                        <form class="needs-validation" action ="/mobil/{{ $mobils->id }}" method="post"
+                        <form class="needs-validation" action ="/data-buku/{{ $bukus->id }}" method="post"
                             enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Merek</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan merek mobil"
-                                    class="form-control @error('merek') is-invalid @enderror"
-                                    value="{{ old('merek', $mobils->merek) }}" name="merek">
-                                @error('merek')
+                                <label class="form-label" for="exampleFormControlInput1">Judul</label>
+                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan judul buku"
+                                    class="form-control @error('judul') is-invalid @enderror"
+                                    value="{{ old('judul', $bukus->judul) }}" name="judul">
+                                @error('judul')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Model</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan model mobil"
-                                    class="form-control @error('model') is-invalid @enderror"
-                                    value="{{ old('model', $mobils->model) }}" name="model">
-                                @error('model')
+                                <label class="form-label" for="exampleFormControlInput1">Penulis</label>
+                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan penulis"
+                                    class="form-control @error('penulis') is-invalid @enderror"
+                                    value="{{ old('penulis', $bukus->penulis) }}" name="penulis">
+                                @error('penulis')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Nomor Plat</label>
                                 <input type="text" id="exampleFormControlInput1" placeholder="Masukkan nomor plat mobil"
                                     class="form-control @error('noplat') is-invalid @enderror"
@@ -46,19 +46,38 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Deskripsi</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan deskripsi mobil"
-                                    class="form-control @error('deskripsi') is-invalid @enderror"
-                                    value="{{ old('deskripsi', $mobils->deskripsi) }}" name="deskripsi">
-                                @error('deskripsi')
+                                <label class="form-label" for="exampleFormControlInput1">Sinopsis</label>
+                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan sinopsis"
+                                    class="form-control @error('sinopsis') is-invalid @enderror"
+                                    value="{{ old('sinopsis', $bukus->sinopsis) }}" name="sinopsis">
+                                @error('sinopsis')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label class="form-label" for="kategori_id">Kategori</label>
+                                <select class="form-control" type="text" id="kategori_id" placeholder="Pilih Kategori"
+                                    name="kategori_id">
+                                    <option selected disabled>- Pilih kategori -</option>
+                                    @foreach ($kategoris as $kategori)
+                                        @if (old('kategori_id', $kategori->kategori_id) == $kategori->id)
+                                            <option value="{{ $kategori->id }}" selected>{{ $kategori->nama_kategori }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('kategori_id')
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{-- <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Harga</label>
                                 <input type="number" id="exampleFormControlInput1"
                                     placeholder="Masukkan harga sewa mobil per hari"
@@ -69,19 +88,20 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
-                                <label class="form-label input-group mb-3" for="inputGroupFile02">Foto</label>
-                                <input type="file" class="form-control" value="{{ old('foto', $mobils->foto) }}"
-                                    name="foto" id="inputGroupFile02">
-                                @error('foto')
+                                <label class="form-label input-group mb-3" for="inputGroupFile02">Gambar buku</label>
+                                <input type="file" class="form-control"
+                                    value="{{ old('gambar_buku', $bukus->gambar_buku) }}" name="gambar_buku"
+                                    id="inputGroupFile02">
+                                @error('gambar_buku')
                                     <div class="error">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="container mt-3">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a href="/mobil" class="btn btn-secondary btn-lg">Back</a>
+                                        <a href="/data-buku" class="btn btn-secondary btn-lg">Back</a>
                                     </div>
                                     <div class="col text-end">
                                         <button class="btn btn-primary btn-lg" type="submit" name="submit">Save</button>

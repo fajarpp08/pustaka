@@ -13,7 +13,7 @@
                     <ul class="breadcrumbs">
                         <li class="breadcrumbs__item"><a href="index.html">Home</a></li>
                         <li class="breadcrumbs__item"><a href="cars.html">Explore cars</a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item--active">{{ $mobils->model }}</li>
+                        <li class="breadcrumbs__item breadcrumbs__item--active">{{ $bukus->judul }}</li>
                     </ul>
                 </div>
                 <!-- end breadcrumb -->
@@ -21,7 +21,7 @@
                 <!-- title -->
                 <div class="col-12">
                     <div class="main__title main__title--page">
-                        <h1>{{ $mobils->merek }} - {{ $mobils->model }}</h1>
+                        <h1>{{ $bukus->judul }} - {{ $bukus->penulis }}</h1>
                     </div>
                 </div>
                 <!-- end title -->
@@ -48,7 +48,7 @@
                             <div class="splide__track">
                                 <ul class="splide__list">
                                     <li class="splide__slide">
-                                        <img src="{{ asset('storage/mobil/' . $mobils->foto) }}" alt="">
+                                        <img src="{{ asset('storage/buku/' . $bukus->gambar_buku) }}" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -56,16 +56,16 @@
 
                         <ul id="thumbnails" class="thumbnails">
                             <li class="thumbnail">
-                                <img src="{{ asset('storage/mobil/' . $mobils->foto) }}" alt="">
+                                <img src="{{ asset('storage/buku/' . $bukus->foto) }}" alt="">
                             </li>
                             <li class="thumbnail">
-                                <img src="{{ asset('storage/mobil/' . $mobils->foto) }}" alt="">
+                                <img src="{{ asset('storage/buku/' . $bukus->foto) }}" alt="">
                             </li>
                             <li class="thumbnail">
-                                <img src="{{ asset('storage/mobil/' . $mobils->foto) }}" alt="">
+                                <img src="{{ asset('storage/buku/' . $bukus->foto) }}" alt="">
                             </li>
                             <li class="thumbnail">
-                                <img src="{{ asset('storage/mobil/' . $mobils->foto) }}" alt="">
+                                <img src="{{ asset('storage/buku/' . $bukus->foto) }}" alt="">
                             </li>
                         </ul>
                     </div>
@@ -77,38 +77,38 @@
                     <div class="offer">
                         <span class="offer__title">Deskripsi</span>
                         <div class="offer__wrap">
-                            <span class="offer__price">Rp. {{ $mobils->harga }}<sub>/ hari</sub></span>
+                            <span class="offer__price">{{ $bukus->penulis }}</span>
                             <button class="offer__favorite" type="button" aria-label="Add to favorite"><svg
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path
                                         d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z" />
                                 </svg></button>
-                            <a href="{{ route('rental.form', ['mobil_id' => $mobils->id]) }}"
+                            {{-- <a href="{{ route('rental.form', ['mobil_id' => $mobils->id]) }}"
                                 data-harga="{{ $mobils->harga }}" type="button"
-                                class="offer__rent"><span>Rental</span></a>
+                                class="offer__rent"><span>Rental</span></a> --}}
                         </div>
 
                         <span class="offer__title">Detail Mobil</span>
                         <ul class="offer__list">
-                            <li>
+                            {{-- <li>
                                 <span class="offer__list-name">Harga rental per hari</span>
-                                <span class="offer__list-value">Rp. {{ $mobils->harga }}</span>
-                            </li>
+                                <span class="offer__list-value">{{ $mobils->harga }}</span>
+                            </li> --}}
                             <li>
-                                <span class="offer__list-name">Merek</span>
-                                <span class="offer__list-value">{{ $mobils->merek }}</span>
+                                <span class="offer__list-name">Judul</span>
+                                <span class="offer__list-value">{{ $bukus->judul }}</span>
                             </li>
                             <li>
                                 <span class="offer__list-name">Model</span>
-                                <span class="offer__list-value">{{ $mobils->model }}</span>
+                                <span class="offer__list-value">{{ $bukus->penulis }}</span>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <span class="offer__list-name">Nomor Plat</span>
-                                <span class="offer__list-value">{{ $mobils->noplat }}</span>
-                            </li>
+                                <span class="offer__list-value">{{ $bukus->sinopsi }}</span>
+                            </li> --}}
                             <li>
                                 <span class="offer__list-name">Deskripsi</span>
-                                <span class="offer__list-value">{{ $mobils->deskripsi }}</span>
+                                <span class="offer__list-value">{{ $bukus->sinopsis }}</span>
                             </li>
                         </ul>
 
@@ -184,7 +184,7 @@
                     <div class="main__title">
                         <h2>You may also like</h2>
 
-                        <a href="/mobiluser" class="main__link">View more <svg xmlns="http://www.w3.org/2000/svg"
+                        <a href="/buku" class="main__link">View more <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
@@ -193,7 +193,7 @@
                 </div>
                 <!-- end title -->
 
-                @foreach ($mobilsAll as $mobilsAll)
+                @foreach ($bukusAll as $bukusAll)
                     <!-- car -->
                     <div class="col-12 col-md-6 col-xl-4">
                         <div class="car">
@@ -216,23 +216,24 @@
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <li class="splide__slide">
-                                            <img src="{{ asset('storage/mobil/' . $mobilsAll->foto) }}" alt="">
+                                            <img src="{{ asset('storage/buku/' . $bukusAll->gambar_buku) }}"
+                                                alt="">
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="car__title">
                                 <h3 class="car__name"><a
-                                        href="{{ route('mobil.detail', ['id' => $mobilsAll->id]) }}">{{ $mobilsAll->model }}</a>
+                                        href="{{ route('buku.detail', ['id' => $bukusAll->id]) }}">{{ $bukusAll->judul }}</a>
                                 </h3>
-                                <span class="car__year">{{ $mobilsAll->merek }}</span>
+                                <span class="car__year">{{ $bukusAll->penulis }}</span>
                             </div>
                             <div class="car__footer">
-                                <span class="car__price">Rp. {{ $mobilsAll->harga }} <sub>/ hari</sub></span>
-                                <a href="{{ route('mobil.detail', ['id' => $mobilsAll->id]) }}"
+                                <span class="car__price">{{ $bukusAll->sinopsis }} <sub>/ hari</sub></span>
+                                <a href="{{ route('buku.detail', ['id' => $bukusAll->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
-                                <a href="{{ route('rental.form', ['mobil_id' => $mobilsAll->id]) }}"
-                                    data-harga="{{ $mobilsAll->harga }}" class="car__more"><span>Rental</span></a>
+                                <a href="{{ route('pinjam.form', ['mobil_id' => $bukusAll->id]) }}"
+                                     class="car__more"><span>Pinjam</span></a>
                             </div>
                         </div>
                     </div>

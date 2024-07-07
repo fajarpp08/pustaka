@@ -2,9 +2,131 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BukuController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $bukus = Buku::paginate(10);
+
+        return view('admin.buku.index', compact('bukus'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $kategoris = Kategori::all();
+
+        return view('admin.buku.create', compact('kategoris'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required',
+            'penulis' => 'required',
+            'sinopsis' => 'required',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'gambar_buku' => 'nullable',
+        ], [
+            'judul.required' => 'Judul harus diisi!',
+            'penulis.required' => 'Penulis harus diisi',
+            'sinopsis.required' => 'Sinopsis plat harus diisi!',
+            'kategori_id.required' => 'Kategori buku harus diisi!',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/data-buku/create')->withErrors($validator)->withInput();
+        }
+        $bukus = $validator->valid();
+
+        $bukus = new Buku();
+        $bukus->judul = $request->judul;
+        $bukus->penulis = $request->penulis;
+        $bukus->sinopsis = $request->sinopsis;
+        $bukus->kategori_id = $request->kategori_id;
+
+        if ($request->hasFile('gambar_buku')) {
+            $file = $request->file('gambar_buku');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('buku', $fileName, 'public');
+            $bukus->gambar_buku = $fileName;
+        }
+        // dd($bukus);
+
+        $bukus->save();
+
+        return redirect('/data-buku')->with('message', 'Data mobil berhasil ditambahkan!');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $bukus = Buku::find($id);
+        $kategoris = Kategori::all();
+
+        return view('admin.buku.edit', compact('bukus', 'kategoris'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $bukus = Buku::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'sinopsis' => 'required',
+            // 'kategori_id' => 'required',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'gambar_buku' => 'nullable',
+        ], [
+            'judul.required' => 'Judul buku harus diisi!',
+            'penulis.required' => 'Penulis harus diisi',
+            'sinopsis.required' => 'Sinopsis harus diisi!',
+            'kategori_id.required' => 'Kategori buku harus diisi!',
+        ]);
+
+        $bukus->judul = $validatedData['judul'];
+        $bukus->penulis = $validatedData['penulis'];
+        $bukus->sinopsis = $validatedData['sinopsis'];
+        $bukus->kategori_id = $validatedData['kategori_id'];
+
+        if ($request->hasFile('gambar_buku')) {
+            $file = $request->file('gambar_buku');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('buku', $fileName, 'public');
+            $bukus->gambar_buku = $fileName;
+        }
+
+        // dd($bukus);
+        $bukus->save();
+
+        return redirect('/data-buku')->with('message', 'Data buku berhasil diubah!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        Buku::destroy($id);
+        return redirect('/data-buku')->with('message', 'Data buku berhasil dihapus!');
+    }
 }

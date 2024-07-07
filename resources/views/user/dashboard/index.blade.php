@@ -30,7 +30,7 @@
                     <div class="main__title main__title--first">
                         <h2>Our Cars!</h2>
 
-                        <a href="/mobiluser" class="main__link">View more <svg xmlns="http://www.w3.org/2000/svg"
+                        <a href="/buku" class="main__link">View more <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
@@ -40,7 +40,7 @@
                 <!-- end title -->
 
                 <!-- car -->
-                @foreach ($mobils as $mobil)
+                @foreach ($bukus as $buku)
                     <div class="col-12 col-md-6 col-xl-4">
                         <div class="car">
                             <div class="splide splide--card car__slider">
@@ -62,22 +62,34 @@
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <li class="splide__slide">
-                                            <img src="{{ asset('storage/mobil/' . $mobil->foto) }}" alt="">
+                                            <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}" alt="">
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="car__title">
-                                <h3 class="car__name"><a href="car.html">{{ $mobil->model }}</a></h3>
-                                <span class="car__year">{{ $mobil->merek }}</span>
+                                <h3 class="car__name"><a href="car.html">{{ $buku->judul }}</a></h3>
+                                <span class="car__year">{{ $buku->penulis }}</span>
                             </div>
+                            {{-- <div class="car__title">
+                                <h3 class="car__name"><a href="car.html">{{ $buku->penulis }}</a></h3>
+                            </div> --}}
+
                             <div class="car__footer">
+                                <span class="car__price">{{ $buku->sinopsis }}</span>
+                                <a href="{{ route('buku.detail', ['id' => $buku->id]) }}"
+                                    class="car__detail"><span>Detail</span></a>
+                                <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
+                                    class="car__more"><span>Pinjam</span></a>
+                            </div>
+
+                            {{-- <div class="car__footer">
                                 <span class="car__price">Rp. {{ $mobil->harga }} <sub>/ hari</sub></span>
                                 <a href="{{ route('mobil.detail', ['id' => $mobil->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
                                 <a href="{{ route('rental.form', ['mobil_id' => $mobil->id]) }}" class="car__more"
                                     data-harga="{{ $mobil->harga }}"><span>Rental</span></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 @endforeach
@@ -134,7 +146,7 @@
                                     d="M13.3,12.22A4.92,4.92,0,0,0,15,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,2,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,13.3,12.22ZM10,11.5a3,3,0,1,1,3-3A3,3,0,0,1,10,11.5ZM21.71,9.13a1,1,0,0,0-1.42,0l-2,2-.62-.63a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l1.34,1.34a1,1,0,0,0,1.41,0l2.67-2.67A1,1,0,0,0,21.71,9.13Z" />
                             </svg>
                         </span>
-                        <h3 class="step1__title">Lakukan rental</h3>
+                        <h3 class="step1__title">Lakukan peminjaman</h3>
                         <p class="step1__text">Setelah menemukan mobil yang sempurna, Anda tinggal mengklik tombol 'Rental'.
                             Proses pemesanan akan dilakukan secara cepat dan mudah.
                         </p>

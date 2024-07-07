@@ -16,7 +16,7 @@
                 <!-- title -->
                 <div class="col-12">
                     <div class="main__title main__title--page">
-                        <h1>Daftar mobil yang dirental</h1>
+                        <h1>Daftar buku yang dipinjam</h1>
                     </div>
                 </div>
                 <!-- end title -->
@@ -52,46 +52,46 @@
                                                             <th>Model</th> 
                                                             <th>Merek</th>
                                                             <th>Nomor Plat</th>
-                                                            <th>Tanggal Rental</th>
+                                                            <th>Tanggal pinjam</th>
                                                             <th>Total Harga</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead> --}}
                                                     @php
-                                                        $rentalExist = false;
+                                                        $pinjamExist = false;
                                                     @endphp
 
-                                                    @forelse ($rentalanUser as $rental)
-                                                        @if (!$rental->status_kembali)
+                                                    @forelse ($pinjamanUser as $pinjam)
+                                                        @if (!$pinjam->status_kembali)
                                                             <!-- Tampilkan card hanya jika mobil belum dikembalikan -->
                                                             @php
-                                                                $rentalExist = true;
+                                                                $pinjamExist = true;
                                                             @endphp
-                                                            <tbody id="card{{ $rental->id }}">
+                                                            <tbody id="card{{ $pinjam->id }}">
                                                                 <tr>
                                                                     <td>
                                                                         <div class="cart__img">
-                                                                            <img src="{{ asset('storage/mobil/' . $rental->mobil->foto) }}"
+                                                                            <img src="{{ asset('storage/buku/' . $pinjam->buku->gambar_buku) }}"
                                                                                 alt="">
                                                                         </div>
                                                                     </td>
-                                                                    <td><a href="car.html">{{ $rental->mobil->model }}</a>
+                                                                    <td><a href="car.html">{{ $pinjam->buku->judul }}</a>
                                                                     </td>
-                                                                    <td>{{ $rental->mobil->merek }}</td>
-                                                                    <td>{{ $rental->mobil->noplat }}</td>
+                                                                    <td>{{ $pinjam->buku->penulis }}</td>
+                                                                    <td>{{ $pinjam->buku->sinopsis }}</td>
                                                                     <td><span
-                                                                            class="cart__price">{{ \Carbon\Carbon::parse($rental->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
+                                                                            class="cart__price">{{ \Carbon\Carbon::parse($pinjam->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
                                                                             -
-                                                                            {{ \Carbon\Carbon::parse($rental->tgl_akhir)->isoFormat('DD MMMM YYYY') }}</span>
+                                                                            {{ \Carbon\Carbon::parse($pinjam->tgl_akhir)->isoFormat('DD MMMM YYYY') }}</span>
                                                                     </td>
-                                                                    <td>Rp. {{ $rental->total_harga }}</td>
+                                                                    {{-- <td>Rp. {{ $pinjam->total_harga }}</td> --}}
                                                                     <td>
                                                                         <form
-                                                                            action="{{ route('kembalikan', ['rental' => $rental->id]) }}"
+                                                                            action="{{ route('kembalikan', ['pinjam' => $pinjam->id]) }}"
                                                                             method="post">
                                                                             @csrf
                                                                             <button class="cart__delete" type="submit"
-                                                                                onclick="return confirm('Apakah Anda yakin untuk kembalikan mobil?')"
+                                                                                onclick="return confirm('Apakah Anda yakin untuk kembalikan buku?')"
                                                                                 aria-label="Delete"><svg
                                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                                     viewBox="0 0 24 24">
@@ -115,12 +115,12 @@
                                                         </div>
                                                     @endforelse
 
-                                                    @if (!$rentalExist)
+                                                    @if (!$pinjamExist)
                                                         <div class="col-md-12">
                                                             <p style="color: black;">Anda belum melakukan penyewaan mobil saat ini,
                                                                 mari melakukan penyewaan lagi.</p>
                                                         </div>
-                                                        <a href="/mobiluser" type="button" class="btn btn-primary btn-sm">Mulai rental</a>
+                                                        <a href="/buku" type="button" class="btn btn-primary btn-sm">Mulai pinjam</a>
                                                     @endif
                                                 </table>
                                             </div>
