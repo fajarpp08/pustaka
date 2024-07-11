@@ -40,23 +40,22 @@
                         <div class="tab-pane fade show active" id="tab-1" role="tabpanel" tabindex="0">
                             <div class="row">
                                 <div class="col-12">
-
                                     <!-- cart -->
                                     <div class="cart">
                                         <div class="cart__table-wrap">
                                             <div class="cart__table-scroll">
                                                 <table class="cart__table">
-                                                    {{-- <thead>
+                                                    {{-- dd($pinjamanUser); --}}
+                                                    <thead>
                                                         <tr>
                                                             <th></th> 
-                                                            <th>Model</th> 
-                                                            <th>Merek</th>
-                                                            <th>Nomor Plat</th>
+                                                            <th>Judul</th> 
+                                                            <th>Penulis</th>
+                                                            <th>Sinopsis</th>
                                                             <th>Tanggal pinjam</th>
-                                                            <th>Total Harga</th>
                                                             <th></th>
                                                         </tr>
-                                                    </thead> --}}
+                                                    </thead>
                                                     @php
                                                         $pinjamExist = false;
                                                     @endphp
@@ -117,10 +116,12 @@
 
                                                     @if (!$pinjamExist)
                                                         <div class="col-md-12">
-                                                            <p style="color: black;">Anda belum melakukan penyewaan mobil saat ini,
+                                                            <p style="color: black;">Anda belum melakukan penyewaan mobil
+                                                                saat ini,
                                                                 mari melakukan penyewaan lagi.</p>
                                                         </div>
-                                                        <a href="/buku" type="button" class="btn btn-primary btn-sm">Mulai pinjam</a>
+                                                        <a href="/buku" type="button"
+                                                            class="btn btn-primary btn-sm">Mulai pinjam</a>
                                                     @endif
                                                 </table>
                                             </div>

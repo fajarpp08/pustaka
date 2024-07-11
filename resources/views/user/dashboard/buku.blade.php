@@ -26,15 +26,15 @@
                     <form class="home__search" action="" method="GET">
                         <div class="home__group">
                             <label for="search1">Cari merek atau model mobil yang diinginkan</label>
-                            {{-- <input type="text" id="search1" name="keyword"
-                                value="{{ isset($keyword) ? $keyword : '' }}" placeholder="Masukkan merek atau model mobil"> --}}
+                            <input type="text" id="search1" name="keyword"
+                                value="{{ isset($keyword) ? $keyword : '' }}" placeholder="Masukkan judul buku">
                         </div>
 
                         <div class="home__group">
                             <label for="search2">Cari tanggal untuk cek ketersediaan mobil</label>
-                            {{-- <input type="date" name="tanggal" id="tanggal" class="form-control"
+                            <input type="date" name="tanggal" id="tanggal" class="form-control"
                                 placeholder="Masukkan tanggal" autocomplete="off"
-                                value="{{ isset($tanggal) ? $tanggal : '' }}"> --}}
+                                value="{{ isset($tanggal) ? $tanggal : '' }}">
                         </div>
                         <button name="submit" type="submit"><span>Search</span></button>
                     </form>
@@ -76,14 +76,14 @@
                                 <h3 class="car__name"><a
                                         href="{{ route('buku.detail', ['id' => $buku->id]) }}">{{ $buku->judul }}</a>
                                 </h3>
-                                <span class="car__year">{{ $buku->penulis }}</span>
+                                {{-- <span class="car__year">{{ $buku->penulis }}</span> --}}
                             </div>
                             <div class="car__footer">
-                                <span class="car__price">{{ $buku->sinopsis }}</span>
+                                <span class="car__price">{{ $buku->penulis }}</span>
                                 <a href="{{ route('buku.detail', ['id' => $buku->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
-                                {{-- <a href="{{ route('rental.form', ['buku_id' => $buku->id]) }}"
-                                    data-harga="{{ $buku->harga }}" class="car__more"><span>Rental</span></a> --}}
+                                <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
+                                    data-harga="{{ $buku->harga }}" class="car__more"><span>Pinjam</span></a>
                             </div>
                         </div>
                     </div>

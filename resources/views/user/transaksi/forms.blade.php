@@ -123,12 +123,12 @@
                     </div>
                     <div class="col-md-4 col-md-pull-7">
                         <div class="booking-form">
-                            <form action="/rental/create" method="POST" enctype="multipart/form-data">
+                            <form action="/pinjam/create" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <span class="form-title">FORM RENTAL</span>
+                                    <span class="form-title">Form Peminjaman</span>
                                 </div>
-                                <input type="hidden" name="mobil_id" value="{{ $mobils->id }}">
+                                <input type="hidden" name="buku_id" value="{{ $bukus->id }}">
 
                                 <div class="form-group">
                                     <span class="form-label">Nama</span>
@@ -136,7 +136,7 @@
                                         name="user_id" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <span class="form-label">Nomor SIM</span>
+                                    <span class="form-label">Nomor Anggota</span>
                                     <input class="form-control" type="text" value="{{ $nama }}"
                                         name="user_id" readonly>
                                 </div>
@@ -158,12 +158,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <span class="form-label">Total Harga</span>
                                     <input class="form-control sign__input" type="text" id="total_harga"
                                         name="total_harga" placeholder="Total Harga" data-harga="{{ $mobils->harga }}"
                                         readonly>
-                                </div>
+                                </div> --}}
                                 <div class="form-btn">
                                     <a href="/dashboarduser" type="button" class="go-back-btn">Kembali</a>
                                     <button type="submit" name="submit" class="submit-btn">Pesan</button>
@@ -221,11 +221,11 @@
                 }
 
 
-                var tglRental =
-                    {!! json_encode($tglRental) !!}; // Anda perlu memberikan data tanggal yang sudah dipesan dari controller
+                var tglPinjam =
+                    {!! json_encode($tglPinjam) !!}; // Anda perlu memberikan data tanggal yang sudah dipesan dari controller
 
                 // Set atribut min untuk tanggal yang sudah dipesan
-                tglRental.forEach(function(bookedDate) {
+                tglPinjam.forEach(function(bookedDate) {
                     if (startDate <= bookedDate && bookedDate <= endDate) {
                         document.getElementById('tgl_mulai').min = endDate;
                         document.getElementById('tgl_akhir').min = endDate;

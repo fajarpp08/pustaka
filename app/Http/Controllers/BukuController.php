@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -128,5 +129,40 @@ class BukuController extends Controller
     {
         Buku::destroy($id);
         return redirect('/data-buku')->with('message', 'Data buku berhasil dihapus!');
+    }
+
+    // fitur search admin 
+    public function searchByName(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $bukus = Buku::where(function ($query) use ($keyword) {
+            $query->where('judul', 'like', "%$keyword%")
+                ->orWhere('penulis', 'like', "%$keyword%");
+            // ->orWhere('noplat', 'like', "%$keyword%");
+        })->paginate(10);
+
+        return view('admin.buku.index', compact('bukus', 'keyword'));
+    }
+
+    // fitur search user
+    public function searchByDate(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $tanggal = $request->input('tanggal');
+        $tanggal = \Carbon\Carbon::parse($tanggal)->format('Y-m-d');
+
+        $bukuTidakTersedia = Peminjaman::where('tgl_mulai', '<=', $tanggal)
+            ->where('tgl_akhir', '>=', $tanggal)
+            ->pluck('buku_id')
+            ->toArray();
+
+        $bukus = Buku::whereNotIn('id', $bukuTidakTersedia)
+            ->when($keyword, function ($query) use ($keyword) {
+                return $query->where('judul', 'like', '%' . $keyword . '%')
+                    ->orWhere('penulis', 'like', '%' . $keyword . '%');
+            })->get();
+
+        return view('user.dashboard.buku', compact('bukus', 'keyword'));
     }
 }

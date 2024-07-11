@@ -24,7 +24,7 @@
 
                             {{-- Peminjaman --}}
                             <li class="header__nav-item">
-                                <a href="/rentalan" class="header__nav-link">Peminjaman</a>
+                                <a href="/pinjaman" class="header__nav-link">Peminjaman</a>
                             </li>
                             
                             {{-- Peminjaman --}}

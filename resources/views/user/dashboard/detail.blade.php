@@ -232,7 +232,7 @@
                                 <span class="car__price">{{ $bukusAll->sinopsis }} <sub>/ hari</sub></span>
                                 <a href="{{ route('buku.detail', ['id' => $bukusAll->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
-                                <a href="{{ route('pinjam.form', ['mobil_id' => $bukusAll->id]) }}"
+                                <a href="{{ route('pinjam.form', ['buku_id' => $bukusAll->id]) }}"
                                      class="car__more"><span>Pinjam</span></a>
                             </div>
                         </div>

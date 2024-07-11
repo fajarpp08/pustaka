@@ -134,7 +134,6 @@ class PeminjamanController extends Controller
         $user = Auth::user();
         // Mengambil data peminjaman dari data user yang login
         $pinjamanUser = $user->peminjamans ?? collect();
-        // dd($pinjamanUser);
 
         // Mengambil data peminjaman 
         $pinjamanPagination = Peminjaman::paginate(6);
@@ -143,6 +142,7 @@ class PeminjamanController extends Controller
             $pinjamans->status_kembali = $pinjamans->pengembalian()->exists();
         });
 
+        // dd($pinjamanUser);
         return view('user.dashboard.peminjaman', compact('pinjamanUser', 'pinjamanPagination'));
     }
 

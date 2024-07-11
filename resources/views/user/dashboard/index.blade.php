@@ -69,14 +69,15 @@
                             </div>
                             <div class="car__title">
                                 <h3 class="car__name"><a href="car.html">{{ $buku->judul }}</a></h3>
-                                <span class="car__year">{{ $buku->penulis }}</span>
+                                {{-- <h3 class="car__name"><a href="car.html">{{ $buku->penulis }}</a></h3> --}}
+                                {{-- <span class="car__year">{{ $buku->penulis }}</span> --}}
                             </div>
                             {{-- <div class="car__title">
                                 <h3 class="car__name"><a href="car.html">{{ $buku->penulis }}</a></h3>
                             </div> --}}
 
                             <div class="car__footer">
-                                <span class="car__price">{{ $buku->sinopsis }}</span>
+                                <span class="car__price">{{ $buku->penulis }}</span>
                                 <a href="{{ route('buku.detail', ['id' => $buku->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
                                 <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
