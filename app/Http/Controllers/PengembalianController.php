@@ -50,7 +50,7 @@ class PengembalianController extends Controller
 
         $pengembalians->save();
 
-        return redirect('/pengembalian')->with('message', 'Data berhasil diubah.');
+        return redirect('/data-pengembalian')->with('message', 'Data berhasil diubah.');
     }
 
     /**
@@ -59,6 +59,6 @@ class PengembalianController extends Controller
     public function destroy(string $id)
     {
         Pengembalian::destroy($id);
-        return redirect('/pengembalian')->with('message', 'Data berhasil dihapus!');
+        return redirect('/data-pengembalian')->with('message', 'Data berhasil dihapus!');
     }
 }

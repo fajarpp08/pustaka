@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="QA_section">
                         <div class="white_box_tittle list_header">
-                            <h4>Data Pengembalian</h4>
+                            <h4>Data Pengembalian Buku</h4>
                             <div class="box_right d-flex lms_block">
                                 <div class="serach_field_2">
                                     <div class="search_inner">
@@ -29,10 +29,10 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Nomor SIM</th>
+                                        <th scope="col">Nomor Anggota</th>
                                         <th scope="col">Gambar</th>
-                                        <th scope="col">Mobil</th>
-                                        <th scope="col">Nomor Plat</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Penulis</th>
                                         <th scope="col">Tanggal Kembali</th>
                                         {{-- <th scope="col">Status</th> --}}
                                         <th scope="col">Action</th>
@@ -51,31 +51,30 @@
                                             </td>
                                             <td>
                                                 @if ($pengembalian->peminjaman && $pengembalian->peminjaman->user)
-                                                    {{ $pengembalian->peminjaman->user->nosim }}
+                                                    {{ $pengembalian->peminjaman->user->noanggota }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($pengembalian->peminjaman->mobil->foto)
-                                                    <img src="{{ asset('storage/mobil/' . $pengembalian->peminjaman->mobil->foto) }}" alt="mobil"
-                                                        class="img-fluid" width="150">
+                                                @if ($pengembalian->peminjaman->buku->gambar_buku)
+                                                    <img src="{{ asset('storage/buku/' . $pengembalian->peminjaman->buku->gambar_buku) }}"
+                                                        alt="buku" class="img-fluid" width="150">
                                                 @else
-                                                    <img src="{{ asset('images/foto-profile.png') }}" alt="mobil"
+                                                    <img src="{{ asset('images/foto-profile.png') }}" alt="buku"
                                                         class="img-fluid rounded-circle" width="80">
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                                    {{ $pengembalian->peminjaman->mobil->merek }} -
-                                                    {{ $pengembalian->peminjaman->mobil->model }}
+                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->buku)
+                                                    {{ $pengembalian->peminjaman->buku->judul }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                                    {{ $pengembalian->peminjaman->mobil->noplat }}
+                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->buku)
+                                                    {{ $pengembalian->peminjaman->buku->penulis }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
@@ -85,13 +84,13 @@
                                             {{-- <td>{{ $pengembalian->status_kembali }}</td> --}}
                                             <td>
                                                 <ul class="list-inline m-0">
-                                                    <a href="/pengembalian/{{ $pengembalian->id }}/edit"
+                                                    <a href="/data-pengembalian/{{ $pengembalian->id }}/edit"
                                                         class="list-inline-item">
                                                         <button class="btn btn-success btn-sm rounded-0" type="button"
                                                             data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                                 class="fa fa-edit"></i></button>
                                                     </a>
-                                                    <form action="/pengembalian/{{ $pengembalian->id }}" method="post"
+                                                    <form action="/data-pengembalian/{{ $pengembalian->id }}" method="post"
                                                         class="list-inline-item">
                                                         @method('DELETE')
                                                         @csrf

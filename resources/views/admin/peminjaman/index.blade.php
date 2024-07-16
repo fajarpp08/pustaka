@@ -29,12 +29,12 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Nomor SIM</th>
+                                        <th scope="col">Nomor Anggota</th>
+                                        <th scope="col">Alamat</th>
                                         <th scope="col">Gambar</th>
-                                        <th scope="col">Mobil</th>
-                                        <th scope="col">Nomor Plat</th>
-                                        <th scope="col">Lama Rental</th>
-                                        <th scope="col">Total Harga</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Lama Peminjaman</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -52,39 +52,47 @@
                                             </td>
                                             <td>
                                                 @if ($peminjaman->user)
-                                                    {{ $peminjaman->user->nosim }}
+                                                    {{ $peminjaman->user->noanggota }}
                                                 @else
                                                     nomor sim tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($peminjaman->mobil->foto)
-                                                    <img src="{{ asset('storage/mobil/' . $peminjaman->mobil->foto) }}"
-                                                        alt="mobil" class="img-fluid" width="150">
+                                                @if ($peminjaman->user)
+                                                    {{ $peminjaman->user->alamat }}
                                                 @else
-                                                    <img src="{{ asset('images/foto-profile.png') }}" alt="mobil"
+                                                    nomor sim tidak ditemukan
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($peminjaman->buku->gambar_buku)
+                                                    <img src="{{ asset('storage/buku/' . $peminjaman->buku->gambar_buku) }}"
+                                                        alt="buku" class="img-fluid" width="150">
+                                                @else
+                                                    <img src="{{ asset('images/foto-profile.png') }}" alt="buku"
                                                         class="img-fluid rounded-circle" width="80">
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($peminjaman->mobil)
-                                                    {{ $peminjaman->mobil->merek }} - {{ $peminjaman->mobil->model }}
+                                                @if ($peminjaman->buku)
+                                                    {{ $peminjaman->buku->judul }}
                                                 @else
-                                                    data mobil tidak ditemukan
+                                                    data buku tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($peminjaman->mobil)
-                                                    {{ $peminjaman->mobil->noplat }}
+                                                @if ($peminjaman->buku)
+                                                    {{ $peminjaman->buku->penulis }}
                                                 @else
-                                                    nama tidak ditemukan
+                                                    data buku tidak ditemukan
                                                 @endif
                                             </td>
+
                                             <td>{{ \Carbon\Carbon::parse($peminjaman->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
                                                 -
                                                 {{ \Carbon\Carbon::parse($peminjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}
                                             </td>
-                                            <td>{{ $peminjaman->total_harga }}</td>
+                                            {{-- <td>{{ $peminjaman->total_harga }}</td> --}}
                                             {{-- <td>{{ $peminjaman->status_kembali }}</td> --}}
                                             <td><a
                                                     class="{{ $peminjaman->status_kembali == 1 ? 'status_btn' : 'status_btn red_btn' }}">
@@ -92,13 +100,13 @@
                                             </td>
                                             <td>
                                                 <ul class="list-inline m-0">
-                                                    <a href="/peminjaman/{{ $peminjaman->id }}/edit"
+                                                    <a href="/data-peminjaman/{{ $peminjaman->id }}/edit"
                                                         class="list-inline-item">
                                                         <button class="btn btn-success btn-sm rounded-0" type="button"
                                                             data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                                 class="fa fa-edit"></i></button>
                                                     </a>
-                                                    <form action="/peminjaman/{{ $peminjaman->id }}" method="post"
+                                                    <form action="/data-peminjaman/{{ $peminjaman->id }}" method="post"
                                                         class="list-inline-item">
                                                         @method('DELETE')
                                                         @csrf

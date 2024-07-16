@@ -10,7 +10,7 @@
                                 <h3 class="mb-0">Edit Data Peminjaman</h3>
                             </div>
                         </div>
-                        <form class="needs-validation" action ="/peminjaman/{{ $peminjamans->id }}" method="post"
+                        <form class="needs-validation" action ="/data-peminjaman/{{ $peminjamans->id }}" method="post"
                             enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
@@ -26,26 +26,26 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect1">Nomor SIM</label>
+                            {{-- <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlSelect1">Nomor Anggota</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="user_id">
                                     @foreach ($users as $user)
                                         @if (old('user_id', $peminjamans->user_id) == $user->id)
-                                            <option value="{{ $user->id }}" selected>{{ $user->nosim }}</option>
+                                            <option value="{{ $user->id }}" selected>{{ $user->noanggota }}</option>
                                         @else
-                                            <option value="{{ $user->id }}">{{ $user->nosim }}</option>
+                                            <option value="{{ $user->id }}">{{ $user->noanggota }}</option>
                                         @endif
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect1">Mobil</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="mobil_id">
-                                    @foreach ($mobils as $mobil)
-                                        @if (old('mobil_id', $peminjamans->mobil_id) == $mobil->id)
-                                            <option value="{{ $mobil->id }}" selected>{{ $mobil->model }}</option>
+                                <label class="form-label" for="exampleFormControlSelect1">Buku</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="buku_id">
+                                    @foreach ($bukus as $buku)
+                                        @if (old('buku_id', $peminjamans->buku_id) == $buku->id)
+                                            <option value="{{ $buku->id }}" selected>{{ $buku->judul }}</option>
                                         @else
-                                            <option value="{{ $mobil->id }}">{{ $mobil->model }}</option>
+                                            <option value="{{ $buku->id }}">{{ $buku->judul }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -72,7 +72,16 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlSelect1">Status</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="status_kembali">
+                                    <option value="false" {{ $peminjamans->status_kembali == 0 ? 'selected' : '' }}>
+                                        Proses</option>
+                                    <option value="true" {{ $peminjamans->status_kembali !== 0 ? 'selected' : '' }}>
+                                        Selesai</option>
+                                </select>
+                            </div> --}}
+                            {{-- <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Total Harga</label>
                                 <input type="text" id="exampleFormControlInput1" placeholder="Masukkan total harga"
                                     class="form-control @error('total_harga') is-invalid @enderror"
@@ -82,11 +91,11 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="container mt-3">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a href="/peminjaman" class="btn btn-secondary btn-lg">Back</a>
+                                        <a href="/data-peminjaman" class="btn btn-secondary btn-lg">Back</a>
                                     </div>
                                     <div class="col text-end">
                                         <button class="btn btn-primary btn-lg" type="submit" name="submit">Update</button>

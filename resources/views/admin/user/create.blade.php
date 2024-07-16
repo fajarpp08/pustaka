@@ -10,7 +10,7 @@
                                 <h3 class="mb-0">Add Data User</h3>
                             </div>
                         </div>
-                        <form class="needs-validation" action ="/useradm" method="post">
+                        <form class="needs-validation" action ="/data-user" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Nama</label>
@@ -18,6 +18,17 @@
                                     class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}"
                                     name="nama">
                                 @error('nama')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlInput1">Email</label>
+                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan email"
+                                    class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                                    name="email">
+                                @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -35,11 +46,11 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Nomor SIM</label>
-                                <input type="number" id="exampleFormControlInput1" placeholder="Masukkan Nomor SIM"
-                                    class="form-control @error('nosim') is-invalid @enderror" value="{{ old('nosim') }}"
-                                    name="nosim">
-                                @error('nosim')
+                                <label class="form-label" for="exampleFormControlInput1">Nomor Anggota</label>
+                                <input type="number" id="exampleFormControlInput1" placeholder="Masukkan Nomor Anggota"
+                                    class="form-control @error('noanggota') is-invalid @enderror"
+                                    value="{{ old('noanggota') }}" name="noanggota">
+                                @error('noanggota')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -84,7 +95,7 @@
                             <div class="container mt-3">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a href="/useradm" class="btn btn-secondary btn-lg">Back</a>
+                                        <a href="/data-user" class="btn btn-secondary btn-lg">Back</a>
                                     </div>
                                     <div class="col text-end">
                                         <button class="btn btn-primary btn-lg" type="submit" name="submit">Save</button>

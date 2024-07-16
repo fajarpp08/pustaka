@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('penulis');
             $table->longText('sinopsis');
             $table->text('gambar_buku')->nullable();
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('SET DEFAULT');
+            $table->foreignId('kategori_id');
+            $table->string('slug', 400);
+            $table->integer('stok');
             $table->timestamps();
         });
     }

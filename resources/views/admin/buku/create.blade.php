@@ -25,7 +25,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Penulis</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan model mobil"
+                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan Penulis"
                                     class="form-control @error('penulis') is-invalid @enderror" value="{{ old('penulis') }}"
                                     name="penulis">
                                 @error('penulis')
@@ -64,7 +64,17 @@
                                     <div class="error">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlInput1">Stok</label>
+                                <input type="number" id="exampleFormControlInput1" placeholder="Masukkan stok buku"
+                                    class="form-control @error('stok') is-invalid @enderror" value="{{ old('stok') }}"
+                                    name="stok">
+                                @error('stok')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
                                     <label for="lembaga_id">Lembaga</label>
                                     <select class="form-control" type="text" id="lembaga_id" placeholder="Pilih Lembaga"

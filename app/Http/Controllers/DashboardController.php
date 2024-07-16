@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use App\Models\Buku;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -41,5 +43,11 @@ class DashboardController extends Controller
             //     'users' => $users,
             // ]
         );
+    }
+    public function berita()
+    {
+        $beritas = Berita::all();
+        $pengumumans = Pengumuman::all();
+        return view('user.dashboard.berita', compact('beritas', 'pengumumans'));
     }
 }

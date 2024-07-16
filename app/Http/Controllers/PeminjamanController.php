@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Peminjaman;
+// use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Pengembalian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.edit', [
             'peminjamans' => Peminjaman::find($id),
             'users' => User::all(),
-            'bukus' => Buku::all()
+            'bukus' => Buku::all(),
         ]);
     }
 
@@ -46,17 +47,16 @@ class PeminjamanController extends Controller
             'tgl_akhir' => 'required',
             'buku_id' => 'required',
             'user_id' => 'required',
-            // 'status_kembali' => 'nullable',
+            // 'status_kembali' => 'required|boolean',
         ], [
 
             'tgl_mulai.required' => 'kolom tanggal harus diisi',
             'tgl_akhir.required' => 'kolom tanggal harus diisi',
             'buku_id.required' => 'kolom buku harus diisi',
             'user_id.required' => 'kolom user harus diisi',
-            // 'status_kembali.nullable' => 'status kembali',
+            // 'status_kembali.required' => 'status kembali',
         ]);
-
-
+        // dd($peminjamans);
         $peminjamans->tgl_mulai = $validatedData['tgl_mulai'];
         $peminjamans->tgl_akhir = $validatedData['tgl_akhir'];
         $peminjamans->buku_id = $validatedData['buku_id'];
@@ -65,7 +65,7 @@ class PeminjamanController extends Controller
 
         $peminjamans->save();
 
-        return redirect('/peminjaman')->with('message', 'Data berhasil diubah.');
+        return redirect('/data-peminjaman')->with('message', 'Data berhasil diubah.');
     }
 
     /**
@@ -74,9 +74,23 @@ class PeminjamanController extends Controller
     public function destroy(string $id)
     {
         Peminjaman::destroy($id);
-        return redirect('/peminjaman')->with('message', 'Data berhasil dihapus');
+        return redirect('/data-peminjaman')->with('message', 'Data berhasil dihapus');
     }
+    // public function laporan()
+    // {
+    //     $peminjamans = Peminjaman::paginate(10);
 
+    //     return view('admin.peminjaman.laporan', compact('peminjamans'));
+    // }
+    // public function cetakLaporan(Request $request)
+    // {
+    //     $tanggalMulai = Carbon::parse($request->input('tgl_mulai'));
+    //     $tanggalAkhir = Carbon::parse($request->input('tgl_akhir'))->endOfDay();
+
+    //     $peminjamans = Peminjaman::whereBetween('created_at', [$tanggalMulai, $tanggalAkhir])->get();
+    //     $pdf = Pdf::loadview('admin.peminjaman.laporanpdf', ['peminjamans' => $peminjamans]);
+    //     return $pdf->download('Laporan_Peminjaman.pdf');
+    // }
 
 
     // USER 
@@ -84,6 +98,10 @@ class PeminjamanController extends Controller
     {
         $users = Auth::user();
         $bukus = Buku::findOrFail($buku_id);
+
+        if ($bukus->stok <= 0) {
+            return redirect()->back()->with('error', 'Maaf, stok buku sedang kosong!');
+        }
 
         // Mengambil data tanggal yang sudah dipesan
         $tglPinjam = Peminjaman::where('buku_id', $buku_id)
@@ -114,7 +132,7 @@ class PeminjamanController extends Controller
         $user_id = Auth::id();
 
         // Mengambil data mobil 
-        $mobils = Buku::findOrFail($request->input('buku_id'));
+        $bukus = Buku::findOrFail($request->input('buku_id'));
 
         // Isi data
         $peminjamans = new Peminjaman();
@@ -125,6 +143,8 @@ class PeminjamanController extends Controller
 
         // Save data 
         $peminjamans->save();
+
+        $bukus->decrement('stok');
 
         return redirect()->route('pinjaman')->with('success', 'Peminjaman buku berhasil dilakukan!');
     }

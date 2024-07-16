@@ -11,7 +11,7 @@ class Peminjaman extends Model
     use HasFactory;
     protected $table = 'peminjamans';
 
-    protected $fillable = ['tgl_mulai', 'tgl_akhir', 'buku_id'];
+    protected $fillable = ['tgl_mulai', 'tgl_akhir', 'buku_id', 'status_kembali'];
 
     public function buku()
     {

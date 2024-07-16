@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
-            $table->unsignedBigInteger('buku_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('SET DEFAULT');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET DEFAULT');
+            $table->foreignId('buku_id');
+            $table->foreignId('user_id');
             $table->boolean('status_kembali')->default(false);
             $table->timestamps();
         });

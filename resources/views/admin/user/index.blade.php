@@ -26,7 +26,7 @@
                                 </div>
                                 {{-- </form> --}}
                                 <div class="add_button ms-2">
-                                    <a href="/useradm/create" class="btn_1">Add New</a>
+                                    <a href="/data-user/create" class="btn_1">Add New</a>
                                 </div>
                             </div>
                         </div>
@@ -36,8 +36,9 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Alamat</th>
-                                        <th scope="col">No SIM</th>
+                                        <th scope="col">No Anggota</th>
                                         <th scope="col">No HP</th>
                                         <th scope="col">Role</th>
                                         <th scope="col">Action</th>
@@ -48,18 +49,19 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->nama }}</td>
+                                            <td>{{ $user->email }}</td>
                                             <td>{{ $user->alamat }}</td>
-                                            <td>{{ $user->nosim }}</td>
+                                            <td>{{ $user->noanggota }}</td>
                                             <td>{{ $user->nohp }}</td>
                                             <td>{{ $user->role }}</td>
                                             <td>
                                                 <ul class="list-inline m-0">
-                                                    <a href="/useradm/{{ $user->id }}/edit" class="list-inline-item">
+                                                    <a href="/data-user/{{ $user->id }}/edit" class="list-inline-item">
                                                         <button class="btn btn-success btn-sm rounded-0" type="button"
                                                             data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                                 class="fa fa-edit"></i></button>
                                                     </a>
-                                                    <form action="/useradm/{{ $user->id }}" method="post"
+                                                    <form action="/data-user/{{ $user->id }}" method="post"
                                                         class="list-inline-item">
                                                         @method('DELETE')
                                                         @csrf

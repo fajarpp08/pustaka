@@ -41,11 +41,13 @@ class BukuController extends Controller
             'sinopsis' => 'required',
             'kategori_id' => 'required|exists:kategoris,id',
             'gambar_buku' => 'nullable',
+            'stok' => 'required|integer|min:0',
         ], [
             'judul.required' => 'Judul harus diisi!',
             'penulis.required' => 'Penulis harus diisi',
             'sinopsis.required' => 'Sinopsis plat harus diisi!',
             'kategori_id.required' => 'Kategori buku harus diisi!',
+            'stok.required' => 'Stok buku harus diisi!',
         ]);
 
         if ($validator->fails()) {
@@ -58,6 +60,7 @@ class BukuController extends Controller
         $bukus->penulis = $request->penulis;
         $bukus->sinopsis = $request->sinopsis;
         $bukus->kategori_id = $request->kategori_id;
+        $bukus->stok = $request->stok;
 
         if ($request->hasFile('gambar_buku')) {
             $file = $request->file('gambar_buku');
@@ -97,17 +100,20 @@ class BukuController extends Controller
             // 'kategori_id' => 'required',
             'kategori_id' => 'required|exists:kategoris,id',
             'gambar_buku' => 'nullable',
+            'stok' => 'required|integer|min:0',
         ], [
             'judul.required' => 'Judul buku harus diisi!',
             'penulis.required' => 'Penulis harus diisi',
             'sinopsis.required' => 'Sinopsis harus diisi!',
             'kategori_id.required' => 'Kategori buku harus diisi!',
+            'stok.required' => 'Stok buku harus diisi!',
         ]);
 
         $bukus->judul = $validatedData['judul'];
         $bukus->penulis = $validatedData['penulis'];
         $bukus->sinopsis = $validatedData['sinopsis'];
         $bukus->kategori_id = $validatedData['kategori_id'];
+        $bukus->stok = $validatedData['stok'];
 
         if ($request->hasFile('gambar_buku')) {
             $file = $request->file('gambar_buku');

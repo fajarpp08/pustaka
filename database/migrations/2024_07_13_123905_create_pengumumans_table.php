@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengembalians', function (Blueprint $table) {
+        Schema::create('pengumumans', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_kembali');
-            $table->foreignId('peminjaman_id');
+            $table->string('judul_pengumuman');
+            $table->longText('deskripsi_pengumuman');
+            $table->date('tanggal_pengumuman');
+            $table->text('gambar_pengumuman')->nullable();
+            $table->string('slug', 400);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengembalians');
+        Schema::dropIfExists('pengumumans');
     }
 };

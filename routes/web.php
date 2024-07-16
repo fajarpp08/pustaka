@@ -3,13 +3,15 @@
 use App\Http\Middleware\AuthAccess;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
-
+use App\Http\Controllers\PengumumanController;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -30,11 +32,14 @@ Route::middleware(['auth'])->group(function () {
         // ROUTE Admin Access only
         Route::get('/dashboardadmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboardAdmin');
 
-        Route::resource('useradm', UserController::class);
+        Route::resource('data-user', UserController::class);
         Route::resource('data-kategori', KategoriController::class);
         Route::resource('data-buku', BukuController::class);
-        Route::resource('data-pinjam', PeminjamanController::class);
+        Route::resource('data-peminjaman', PeminjamanController::class);
         Route::resource('data-pengembalian', PengembalianController::class);
+        Route::resource('data-berita', BeritaController::class);
+        Route::resource('data-pengumuman', PengumumanController::class);
+        Route::resource('data-galeri', GaleriController::class);
         // // laporan sewa
         // Route::get('/laporansewa', [SewaController::class, 'laporan'])->name('laporansewa');
         // Route::post('/cetak_laporansewa', [SewaController::class, 'cetakLaporan'])->name('cetak_laporansewa');

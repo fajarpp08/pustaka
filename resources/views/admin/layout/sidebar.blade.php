@@ -45,11 +45,28 @@
             </ul>
         </li>
         <li class>
-            <a class="" href="/useradm" aria-expanded="false">
+            <a class="" href="/data-berita" aria-expanded="false">
+                <img src="../assets-admin/img/menu-icon/6.svg" alt>
+                <span>Berita</span>
+            </a>
+        </li>
+        <li class>
+            <a class="" href="/data-pengumuman" aria-expanded="false">
+                <img src="../assets-admin/img/menu-icon/6.svg" alt>
+                <span>Pengumuman</span>
+            </a>
+        </li>
+        <li class>
+            <a class="" href="/data-galeri" aria-expanded="false">
+                <img src="../assets-admin/img/menu-icon/6.svg" alt>
+                <span>Galeri</span>
+            </a>
+        </li>
+        <li class>
+            <a class="" href="/data-user" aria-expanded="false">
                 <img src="../assets-admin/img/menu-icon/6.svg" alt>
                 <span>User</span>
             </a>
-
         </li>
     </ul>
 </nav>

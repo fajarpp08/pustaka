@@ -76,6 +76,17 @@
                                     <div class="error">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlInput1">Stok</label>
+                                <input type="number" id="exampleFormControlInput1" placeholder="Masukkan stok"
+                                    class="form-control @error('stok') is-invalid @enderror"
+                                    value="{{ old('stok', $bukus->stok) }}" name="stok">
+                                @error('stok')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
                             {{-- <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Harga</label>

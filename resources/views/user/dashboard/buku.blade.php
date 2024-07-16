@@ -76,7 +76,7 @@
                                 <h3 class="car__name"><a
                                         href="{{ route('buku.detail', ['id' => $buku->id]) }}">{{ $buku->judul }}</a>
                                 </h3>
-                                {{-- <span class="car__year">{{ $buku->penulis }}</span> --}}
+                                <span class="car__year">{{ $buku->stok }}</span>
                             </div>
                             <div class="car__footer">
                                 <span class="car__price">{{ $buku->penulis }}</span>
