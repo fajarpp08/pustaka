@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route fitur search
     // Route::get('/mobils/search', [MobilController::class, 'searchByName'])->name('mobils.searchname');
-    // Route::get('/searchmobil', [MobilController::class, 'searchByDate'])->name('mobils.searchdate');
+    Route::get('/searchbuku', [BukuController::class, 'searchByDate'])->name('buku.searchdate');
 });
 
 // Route Register

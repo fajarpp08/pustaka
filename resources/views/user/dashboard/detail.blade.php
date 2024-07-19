@@ -226,10 +226,10 @@
                                 <h3 class="car__name"><a
                                         href="{{ route('buku.detail', ['id' => $bukusAll->id]) }}">{{ $bukusAll->judul }}</a>
                                 </h3>
-                                <span class="car__year">{{ $bukusAll->penulis }}</span>
+                                <span class="car__year">{{ $bukusAll->stok }}</span>
                             </div>
                             <div class="car__footer">
-                                <span class="car__price">{{ $bukusAll->sinopsis }} <sub>/ hari</sub></span>
+                                <span class="car__price">{{ $bukusAll->sinopsis }}</span>
                                 <a href="{{ route('buku.detail', ['id' => $bukusAll->id]) }}"
                                     class="car__detail"><span>Detail</span></a>
                                 <a href="{{ route('pinjam.form', ['buku_id' => $bukusAll->id]) }}"

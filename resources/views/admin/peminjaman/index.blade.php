@@ -95,8 +95,8 @@
                                             {{-- <td>{{ $peminjaman->total_harga }}</td> --}}
                                             {{-- <td>{{ $peminjaman->status_kembali }}</td> --}}
                                             <td><a
-                                                    class="{{ $peminjaman->status_kembali == 1 ? 'status_btn' : 'status_btn red_btn' }}">
-                                                    {{ $peminjaman->status_kembali == 1 ? 'Selesai' : 'Proses!' }}</a>
+                                                    class="{{ $peminjaman->status_kembali !== 0 ? 'status_btn' : 'status_btn red_btn' }}">
+                                                    {{ $peminjaman->status_kembali !== 0 ? 'Selesai' : 'Proses!' }}</a>
                                             </td>
                                             <td>
                                                 <ul class="list-inline m-0">

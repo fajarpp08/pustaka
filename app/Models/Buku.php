@@ -27,4 +27,8 @@ class Buku extends Model
             ->generateSlugsFrom('judul')
             ->saveSlugsTo('slug');
     }
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }

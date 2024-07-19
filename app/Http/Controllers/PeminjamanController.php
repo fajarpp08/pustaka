@@ -144,8 +144,10 @@ class PeminjamanController extends Controller
         // Save data 
         $peminjamans->save();
 
+        // pengurangan stok
         $bukus->decrement('stok');
 
+        // dd($peminjamans);
         return redirect()->route('pinjaman')->with('success', 'Peminjaman buku berhasil dilakukan!');
     }
 
@@ -185,12 +187,17 @@ class PeminjamanController extends Controller
             'tgl_kembali' => now(),
         ]);
 
-        $peminjaman->pengembalian()->save($pengembalian);
-        // dd($peminjaman);
         // Membuat data status_kembali menjadi true = 1
         $peminjaman->status_kembali = true;
-
         $peminjaman->save();
+        // dd($peminjaman);
+        $peminjaman->pengembalian()->save($pengembalian);
+
+
+        // Menambah stok buku
+        $buku = Buku::find($peminjaman->buku_id);
+        $buku->stok += 1;
+        $buku->save();
 
         return redirect()->route('pinjaman')->with('success', 'Mobil telah dikembalikan.');
     }

@@ -66,9 +66,9 @@
 
                                             <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="sign__group">
-                                                    <label class="sign__label" for="firstname">Nomor SIM</label>
+                                                    <label class="sign__label" for="firstname">Nomor Anggota</label>
                                                     <input id="firstname" type="text" name="firstname"
-                                                        class="sign__input" placeholder="{{ auth()->user()->nosim }}"
+                                                        class="sign__input" placeholder="{{ auth()->user()->noanggota }}"
                                                         readonly>
                                                 </div>
                                             </div>

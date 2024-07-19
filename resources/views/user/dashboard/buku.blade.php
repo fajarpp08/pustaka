@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <ul class="breadcrumbs">
                         <li class="breadcrumbs__item"><a href="/dashboarduser">Home</a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item--active">Explore cars</li>
+                        <li class="breadcrumbs__item breadcrumbs__item--active">Explore Book</li>
                     </ul>
                 </div>
                 <!-- end breadcrumb -->
@@ -16,14 +16,14 @@
                 <!-- title -->
                 <div class="col-12">
                     <div class="main__title main__title--page">
-                        <h1>Pilih mobil yang diinginkan</h1>
+                        <h1>Pilih buku yang diinginkan</h1>
                     </div>
                 </div>
                 <!-- end title -->
 
                 <!-- filter -->
                 <div class="row justify-content-center">
-                    <form class="home__search" action="" method="GET">
+                    <form class="home__search" action="{{ route('buku.searchdate') }}" method="GET">
                         <div class="home__group">
                             <label for="search1">Cari merek atau model mobil yang diinginkan</label>
                             <input type="text" id="search1" name="keyword"
@@ -35,6 +35,7 @@
                             <input type="date" name="tanggal" id="tanggal" class="form-control"
                                 placeholder="Masukkan tanggal" autocomplete="off"
                                 value="{{ isset($tanggal) ? $tanggal : '' }}">
+                                {{-- value="{{ old('tgl_mulai', $peminjamans->tgl_mulai) }}" name="tgl_mulai"> --}}
                         </div>
                         <button name="submit" type="submit"><span>Search</span></button>
                     </form>
