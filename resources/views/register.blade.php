@@ -74,7 +74,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="sign__group">
+                    {{-- <div class="sign__group">
                         <input type="text" class="sign__input" placeholder="Masukkan Nomor Anggota"
                             class="form-control @error('noanggota') is-invalid @enderror"
                             value="{{ old('noanggota') }}" id="noanggota" aria-describedby="emailHelp"
@@ -84,7 +84,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="sign__group">
                         <input type="password" class="sign__input" placeholder="Masukkan Password"
                             class="form-control @error('password') is-invalid @enderror" id="password" name="password">

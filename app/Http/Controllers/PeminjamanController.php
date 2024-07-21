@@ -151,22 +151,38 @@ class PeminjamanController extends Controller
         return redirect()->route('pinjaman')->with('success', 'Peminjaman buku berhasil dilakukan!');
     }
 
+    // public function pinjaman()
+    // {
+    //     $user = Auth::user();
+    //     // Mengambil data peminjaman dari data user yang login
+    //     $pinjamanUser = $user->peminjamans ?? collect();
+
+    //     // Mengambil data peminjaman 
+    //     $pinjamanPagination = Peminjaman::paginate(6);
+
+    //     $pinjamanUser->each(function ($pinjamans) {
+    //         $pinjamans->status_kembali = $pinjamans->pengembalian()->exists();
+    //     });
+
+    //     // dd($pinjamanUser);
+    //     return view('user.dashboard.peminjaman', compact('pinjamanUser', 'pinjamanPagination'));
+    // }
+
+
     public function pinjaman()
     {
         $user = Auth::user();
-        // Mengambil data peminjaman dari data user yang login
-        $pinjamanUser = $user->peminjamans ?? collect();
+        // Mengambil semua peminjaman user yang sedang login
+        $allPinjamans = $user->peminjamans;
 
-        // Mengambil data peminjaman 
-        $pinjamanPagination = Peminjaman::paginate(6);
+        // Memisahkan peminjaman yang sedang dalam proses dan yang sudah selesai
+        $ongoingPinjamans = $allPinjamans->where('status_kembali', false);
+        $completedPinjamans = $allPinjamans;
 
-        $pinjamanUser->each(function ($pinjamans) {
-            $pinjamans->status_kembali = $pinjamans->pengembalian()->exists();
-        });
-
-        // dd($pinjamanUser);
-        return view('user.dashboard.peminjaman', compact('pinjamanUser', 'pinjamanPagination'));
+        // dd($completedPinjamans);
+        return view('user.dashboard.peminjaman', compact('ongoingPinjamans', 'completedPinjamans'));
     }
+
 
     public function kembalikan($peminjamanId)
     {
@@ -199,6 +215,6 @@ class PeminjamanController extends Controller
         $buku->stok += 1;
         $buku->save();
 
-        return redirect()->route('pinjaman')->with('success', 'Mobil telah dikembalikan.');
+        return redirect()->route('pinjaman')->with('success', 'Buku telah dikembalikan.');
     }
 }

@@ -59,44 +59,63 @@ class AuthController extends Controller
     }
 
     public function saveRegister(Request $request)
-    { {
-            $validator = Validator::make($request->all(), [
-                'nama' => 'required',
-                'alamat' => 'required',
-                'email' => 'required|unique:users',
-                'nohp' => 'required|unique:users',
-                'noanggota' => 'required|unique:users',
-                'password' => 'required',
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'alamat' => 'required',
+            'email' => 'required|unique:users',
+            'nohp' => 'required|unique:users',
+            // 'noanggota' => 'required|unique:users',
+            'password' => 'required',
 
-            ], [
-                'nama.required' => 'Nama harus diisi!',
-                'alamat.required' => 'Alamat harus diisi!',
-                'email.required' => 'Email harus diisi!',
-                'email.unique' => 'Email ini sudah terdaftar, silahkan ganti!',
-                'nohp.required' => 'Nomor HP harus diisi!',
-                'nohp.unique' => 'Nomor HP ini sudah ada, silahkan ganti!',
-                'noanggota.required' => 'Nomor Anggota harus diisi!',
-                'noanggota.unique' => 'Nomor Anggota ini sudah ada, silahkan ganti!',
-                'password.required' => 'Password harus diisi!',
-            ]);
+        ], [
+            'nama.required' => 'Nama harus diisi!',
+            'alamat.required' => 'Alamat harus diisi!',
+            'email.required' => 'Email harus diisi!',
+            'email.unique' => 'Email ini sudah terdaftar, silahkan ganti!',
+            'nohp.required' => 'Nomor HP harus diisi!',
+            'nohp.unique' => 'Nomor HP ini sudah ada, silahkan ganti!',
+            // 'noanggota.required' => 'Nomor Anggota harus diisi!',
+            // 'noanggota.unique' => 'Nomor Anggota ini sudah ada, silahkan ganti!',
+            'password.required' => 'Password harus diisi!',
+        ]);
 
-            if ($validator->fails()) {
-                return redirect('/register')->withErrors($validator)->withInput();
-            }
-            $register = $validator->valid();
-
-            $register = new User();
-            $register->nama = $request->nama;
-            $register->alamat = $request->alamat;
-            $register->email = $request->email;
-            $register->nohp = $request->nohp;
-            $register->noanggota = $request->noanggota;
-            $register->password = Hash::make($request->password);
-
-            $register->save();
-
-            return redirect('/login')->with('message', 'Akun berhasil dibuat, silahkan login!');
+        if ($validator->fails()) {
+            return redirect('/register')->withErrors($validator)->withInput();
         }
+        $register = $validator->valid();
+
+        // Generate nomor anggota
+        $noAnggota = $this->generateNoAnggota();
+
+        $register = new User();
+        $register->nama = $request->nama;
+        $register->alamat = $request->alamat;
+        $register->email = $request->email;
+        $register->nohp = $request->nohp;
+        $register->noanggota = $noAnggota;
+        $register->password = Hash::make($request->password);
+        // dd($register);
+        $register->save();
+
+        return redirect('/login')->with('message', 'Akun berhasil dibuat, silahkan login!');
+    }
+
+    // Generate noanggota
+    private function generateNoAnggota()
+    {
+        $lastUser = User::orderBy('id', 'desc')->first();
+        $lastNoAnggota = $lastUser ? $lastUser->noanggota : null;
+
+        if ($lastNoAnggota) {
+            $lastNoAnggotaNumber = intval(substr($lastNoAnggota, -4));
+            $newNoAnggotaNumber = $lastNoAnggotaNumber + 1;
+            $newNoAnggota = 'PERP-' . str_pad($newNoAnggotaNumber, 4, '0', STR_PAD_LEFT);
+        } else {
+            $newNoAnggota = 'PERP-0001';
+        }
+
+        return $newNoAnggota;
     }
     public function logout()
     {

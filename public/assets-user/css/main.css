@@ -5960,3 +5960,27 @@ body::-webkit-scrollbar-thumb {
   height: 4px !important;
   border-radius: 4px !important;
 }
+
+.status_btn {
+  display: inline-block;
+  padding: 2px 15px;
+  font-size: 11px;
+  font-weight: 300;
+  color: #fff !important;
+  background: #05d34e;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  min-width: 70px;
+  text-align: center
+}
+
+.status_btn.red_btn {
+  background: #fe1724
+}
+
+.status_btn:hover {
+  color: #fff
+}
