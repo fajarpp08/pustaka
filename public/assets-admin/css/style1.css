@@ -2621,6 +2621,23 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
     right: auto;
     left: 20px
 }
+.logo-text {
+    font-weight: bold; /* Membuat teks menjadi tebal */
+    font-size: 1.15rem; /* Ukuran font lebih besar untuk menarik perhatian */
+    color: #2c3e50; /* Warna teks */
+    text-transform: capitalize; /* Membuat teks menjadi huruf besar semua */
+    letter-spacing: 1px; /* Menambah jarak antar huruf */
+    margin-bottom: 0%;
+}
+
+.header-text {
+    font-weight: bold; /* Membuat teks menjadi tebal */
+    font-size: 1.50rem; /* Ukuran font lebih besar untuk menarik perhatian */
+    color: #2c3e50; /* Warna teks */
+    text-transform: uppercase; /* Membuat teks menjadi huruf besar semua */
+    letter-spacing: 1px; /* Menambah jarak antar huruf */
+    margin-bottom: 0%;
+}
 
 @media(max-width:575.98px) {
     .sidebar_icon {
@@ -2887,7 +2904,11 @@ table.dataTable {
 }
 
 .sidebar .logo {
-    margin: 30px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin: 20px; */
     background: #fff;
     padding: 33px 30px;
     border-radius: 7px
@@ -2906,7 +2927,7 @@ table.dataTable {
 .sidebar .single_sidebar_tittle i {
     font-size: 18px;
     margin-right: 12px;
-    color: #f8dbdd;
+    color: #000000;
     -webkit-transition: .5s;
     transition: .5s
 }
@@ -3330,18 +3351,18 @@ table.dataTable {
 
 .sidebar::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track {
-    background-color: #ddd
+    background-color: #ffffff
 }
 
 .sidebar::-webkit-scrollbar,
 body::-webkit-scrollbar {
     width: 6px;
-    background-color: #ddd
+    background-color: #ffffff
 }
 
 .sidebar::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
-    background-color: #f8dbdd
+    background-color: #2daab8
 }
 
 body::-webkit-scrollbar {
@@ -3937,9 +3958,9 @@ body::-webkit-scrollbar {
 }
 
 .QA_section .QA_table tbody img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%
+    width: 80px;
+    height: 100px;
+    /* border-radius: 50% */
 }
 
 .QA_section .QA_table tbody th,
@@ -4575,11 +4596,11 @@ canvas#highlights {
 
 .staf_list_wrapper .single_staf .staf_thumb img {
     margin: auto;
-    width: 118px;
-    height: 118px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%
+    width: 200px;
+    height: 225px;
+    -webkit-border-radius: 0%;
+    -moz-border-radius: 0%;
+    border-radius: 0%
 }
 
 .staf_list_wrapper .single_staf h4 {

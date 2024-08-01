@@ -33,7 +33,6 @@
                                         <th scope="col">Alamat</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Judul</th>
-                                        <th scope="col">Penulis</th>
                                         <th scope="col">Lama Peminjaman</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
@@ -80,14 +79,6 @@
                                                     data buku tidak ditemukan
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($peminjaman->buku)
-                                                    {{ $peminjaman->buku->penulis }}
-                                                @else
-                                                    data buku tidak ditemukan
-                                                @endif
-                                            </td>
-
                                             <td>{{ \Carbon\Carbon::parse($peminjaman->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
                                                 -
                                                 {{ \Carbon\Carbon::parse($peminjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}

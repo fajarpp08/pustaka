@@ -217,4 +217,22 @@ class PeminjamanController extends Controller
 
         return redirect()->route('pinjaman')->with('success', 'Buku telah dikembalikan.');
     }
+
+    // laporan 
+    public function laporan()
+    {
+        $peminjamans = Peminjaman::paginate(10);
+
+        return view('admin.peminjaman.laporan', compact('peminjamans'));
+    }
+    public function cetakLaporan(Request $request)
+    {
+        $tanggalMulai = Carbon::parse($request->input('tgl_mulai'));
+        $tanggalAkhir = Carbon::parse($request->input('tgl_akhir'))->endOfDay();
+
+        $peminjamans = Peminjaman::whereBetween('created_at', [$tanggalMulai, $tanggalAkhir])->get();
+        return view('admin.peminjaman.laporanpdf', compact('peminjamans'));
+        // $pdf = PDF::loadview('admin.peminjaman.laporanpdf', ['peminjamans' => $peminjamans]);
+        // return $pdf->download('Laporan_Peminjaman.pdf');
+    }
 }

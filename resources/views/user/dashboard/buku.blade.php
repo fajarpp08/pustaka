@@ -23,23 +23,17 @@
 
                 <!-- filter -->
                 <div class="row justify-content-center">
-                    <form class="home__search" action="{{ route('buku.searchdate') }}" method="GET">
-                        <div class="home__group">
-                            <label for="search1">Cari merek atau model mobil yang diinginkan</label>
+                    <form class="home__search row align-items-center" action="{{ route('buku.searchbystok') }}"
+                        method="GET">
+                        <div class="home__group" style="width: 70%">
+                            <label for="search1">Cari judul atau penulis buku yang diinginkan</label>
                             <input type="text" id="search1" name="keyword"
                                 value="{{ isset($keyword) ? $keyword : '' }}" placeholder="Masukkan judul buku">
                         </div>
-
-                        <div class="home__group">
-                            <label for="search2">Cari tanggal untuk cek ketersediaan mobil</label>
-                            <input type="date" name="tanggal" id="tanggal" class="form-control"
-                                placeholder="Masukkan tanggal" autocomplete="off"
-                                value="{{ isset($tanggal) ? $tanggal : '' }}">
-                                {{-- value="{{ old('tgl_mulai', $peminjamans->tgl_mulai) }}" name="tgl_mulai"> --}}
-                        </div>
-                        <button name="submit" type="submit"><span>Search</span></button>
+                        <button name="submit" type="submit" style="width: 27%"><span>Search</span></button>
                     </form>
                 </div>
+
                 <!-- end filter -->
             </div>
 

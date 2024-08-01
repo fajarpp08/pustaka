@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer_iner text-center">
-                    <p>2024 © Technical Test PT. Jasamedika Saranatama - Made with <a> <i
-                                class="ti-heart"></i> by </a><a href="#"> Fajar Putra Pratama</a></p>
+                    <p>2024 © Sistem Informasi Perpustakaan MTsN 4 Kota Padang - Made with <a> <i class="ti-heart"></i>
+                            by </a><a href="#"> Rifki Mulfianda </a></p>
                 </div>
             </div>
         </div>

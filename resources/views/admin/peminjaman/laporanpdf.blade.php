@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laporan Peminjaman</title>
+    <title>Laporan Data Peminjaman</title>
     <style type="text/css">
         table {
             width: 100%;
@@ -27,19 +27,18 @@
 
 <body>
     <div class="text-center">
-        <h5 class="card-header" style="text-align: center;">Laporan Peminjaman</h5>
+        <h5 class="card-header" style="text-align: center;">Laporan Data Peminjaman</h5>
 
         <table>
             <thead class="text-center">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Nomor SIM</th>
-                    <th>Merek Mobil</th>
-                    <th>Model Mobil</th>
-                    <th>Nomor Plat</th>
-                    <th>Lama Rental</th>
-                    <th>Total Harga</th>
+                    <th>Nomor Anggota</th>
+                    <th>Judul Buku</th>
+                    <th>Penulis</th>
+                    <th>Tanggal Peminjaman</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,41 +55,38 @@
                         </td>
                         <td class="table-cell">
                             @if ($peminjaman->user)
-                                {{ $peminjaman->user->nosim }}
+                                {{ $peminjaman->user->noanggota }}
                             @else
                                 nosim tidak ditemukan
                             @endif
                         </td>
                         <td class="table-cell">
-                            @if ($peminjaman->mobil)
-                                {{ $peminjaman->mobil->merek }}
+                            @if ($peminjaman->buku)
+                                {{ $peminjaman->buku->judul }}
                             @else
                                 merk tidak ditemukan
                             @endif
                         </td>
                         <td class="table-cell">
-                            @if ($peminjaman->mobil)
-                                {{ $peminjaman->mobil->model }}
-                            @else
-                                merk tidak ditemukan
-                            @endif
-                        </td>
-                        <td class="table-cell">
-                            @if ($peminjaman->mobil)
-                                {{ $peminjaman->mobil->noplat }}
+                            @if ($peminjaman->buku)
+                                {{ $peminjaman->buku->penulis }}
                             @else
                                 noplat tidak ditemukan
                             @endif
                         </td>
-                        <td class="table-cell">{{ \Carbon\Carbon::parse($peminjaman->tgl_mulai)->isoFormat('DD MMMM') }}
+                        <td class="table-cell">
+                            {{ \Carbon\Carbon::parse($peminjaman->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
                             -
                             {{ \Carbon\Carbon::parse($peminjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}</td>
-                        <td class="table-cell">{{ $peminjaman->total_harga }}</td>
+                        <td>{{ $peminjaman->status_kembali !== 0 ? 'Selesai' : 'Proses!' }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    <script>
+        window.print();
+    </script>
 </body>
 
 </html>

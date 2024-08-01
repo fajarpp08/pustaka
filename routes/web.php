@@ -3,7 +3,6 @@
 use App\Http\Middleware\AuthAccess;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
@@ -37,15 +36,14 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('data-buku', BukuController::class);
         Route::resource('data-peminjaman', PeminjamanController::class);
         Route::resource('data-pengembalian', PengembalianController::class);
-        Route::resource('data-berita', BeritaController::class);
         Route::resource('data-pengumuman', PengumumanController::class);
         Route::resource('data-galeri', GaleriController::class);
-        // // laporan sewa
-        // Route::get('/laporansewa', [SewaController::class, 'laporan'])->name('laporansewa');
-        // Route::post('/cetak_laporansewa', [SewaController::class, 'cetakLaporan'])->name('cetak_laporansewa');
-        // // laporan pengembalian
-        // Route::get('/laporanpengembalian', [PengembalianController::class, 'laporan'])->name('laporanpengembalian');
-        // Route::post('/cetak_laporanpengembalian', [PengembalianController::class, 'cetakLaporan'])->name('cetak_laporanpengembalian');
+        // laporan peminjaman
+        Route::get('/laporanpeminjaman', [PeminjamanController::class, 'laporan'])->name('laporanpeminjaman');
+        Route::post('/cetak_laporanpeminjaman', [PeminjamanController::class, 'cetakLaporan'])->name('cetak_laporanpeminjaman');
+        // laporan pengembalian
+        Route::get('/laporanpengembalian', [PengembalianController::class, 'laporan'])->name('laporanpengembalian');
+        Route::post('/cetak_laporanpengembalian', [PengembalianController::class, 'cetakLaporan'])->name('cetak_laporanpengembalian');
     });
 
     // ROUTE User / Login Access Only
@@ -62,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route fitur search
     // Route::get('/mobils/search', [MobilController::class, 'searchByName'])->name('mobils.searchname');
-    Route::get('/searchbuku', [BukuController::class, 'searchByDate'])->name('buku.searchdate');
+    Route::get('/searchbuku', [BukuController::class, 'searchByStok'])->name('buku.searchbystok');
 });
 
 // Route Register

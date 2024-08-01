@@ -38,16 +38,7 @@
                                             <div class="cart__table-scroll">
                                                 <table class="cart__table">
                                                     {{-- dd($pinjamanUser); --}}
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Judul</th>
-                                                            <th>Penulis</th>
-                                                            <th>Sinopsis</th>
-                                                            <th>Tanggal pinjam</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
+
                                                     @php
                                                         $pinjamExist = false;
                                                     @endphp
@@ -58,12 +49,25 @@
                                                             @php
                                                                 $pinjamExist = true;
                                                             @endphp
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Judul</th>
+                                                                    <th>Penulis</th>
+                                                                    <th>Sinopsis</th>
+                                                                    <th>Tanggal pinjam</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+
                                                             <tbody id="card{{ $daftarPinjaman->id }}">
                                                                 <tr>
                                                                     <td>
                                                                         <div class="cart__img">
                                                                             <img src="{{ asset('storage/buku/' . $daftarPinjaman->buku->gambar_buku) }}"
-                                                                                alt="">
+                                                                                class="img-fluid rounded img-zoomin w-100"
+                                                                                alt=""
+                                                                                style="height: 200px; object-fit: cover;">
                                                                         </div>
                                                                     </td>
                                                                     <td><a
@@ -102,16 +106,16 @@
                                                             </tbody>
                                                         @endif
                                                     @empty
-                                                        <div class="col-md-12">
+                                                        {{-- <div class="col-md-12">
                                                             <p>Anda belum pernah melakukan penyewaan, mulai penyewaan.</p>
-                                                        </div>
+                                                        </div> --}}
                                                     @endforelse
 
                                                     @if (!$pinjamExist)
                                                         <div class="col-md-12">
-                                                            <p style="color: black;">Anda belum melakukan penyewaan buku
+                                                            <p style="color: black;">Anda belum melakukan peminjaman buku
                                                                 saat ini,
-                                                                mari melakukan penyewaan lagi.</p>
+                                                                mari melakukan peminjaman lagi.</p>
                                                         </div>
                                                         <a href="/buku" type="button"
                                                             class="btn btn-primary btn-sm">Mulai pinjam</a>
@@ -157,18 +161,6 @@
                                         <div class="cart__table-wrap">
                                             <div class="cart__table-scroll">
                                                 <table class="cart__table">
-                                                    {{-- dd($pinjamanUser); --}}
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Judul</th>
-                                                            <th>Penulis</th>
-                                                            <th>Sinopsis</th>
-                                                            <th>Tanggal pinjam</th>
-                                                            <th>Status</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
                                                     @php
                                                         $pinjamExist = false;
                                                     @endphp
@@ -179,12 +171,26 @@
                                                         @php
                                                             $pinjamExist = true;
                                                         @endphp
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Judul</th>
+                                                                <th>Penulis</th>
+                                                                <th>Sinopsis</th>
+                                                                <th>Tanggal pinjam</th>
+                                                                <th>Status</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+
                                                         <tbody id="card{{ $riwayatPinjaman->id }}">
                                                             <tr>
                                                                 <td>
                                                                     <div class="cart__img">
                                                                         <img src="{{ asset('storage/buku/' . $riwayatPinjaman->buku->gambar_buku) }}"
-                                                                            alt="">
+                                                                            class="img-fluid rounded img-zoomin w-100"
+                                                                            alt=""
+                                                                            style="height: 200px; object-fit: cover;">
                                                                     </div>
                                                                 </td>
                                                                 <td><a
@@ -212,19 +218,21 @@
                                                         {{-- @endif --}}
                                                     @empty
                                                         <div class="col-md-12">
-                                                            <p>Anda belum pernah melakukan penyewaan, mulai penyewaan.</p>
+                                                            <p>Anda belum pernah melakukan peminjaman buku, mulai
+                                                                peminjaman.</p>
+                                                            <a href="/buku" type="button"
+                                                                class="btn btn-primary btn-sm">Mulai pinjam</a>
                                                         </div>
                                                     @endforelse
 
-                                                    @if (!$pinjamExist)
+                                                    {{-- @if (!$pinjamExist)
                                                         <div class="col-md-12">
                                                             <p style="color: black;">Anda belum melakukan penyewaan buku
                                                                 saat ini,
                                                                 mari melakukan penyewaan lagi.</p>
                                                         </div>
-                                                        <a href="/buku" type="button"
-                                                            class="btn btn-primary btn-sm">Mulai pinjam</a>
-                                                    @endif
+
+                                                    @endif --}}
                                                 </table>
                                             </div>
                                         </div>

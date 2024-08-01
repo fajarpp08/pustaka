@@ -41,12 +41,11 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Nomor SIM</th>
-                                        <th scope="col">Merek Mobil</th>
-                                        <th scope="col">Model Mobil</th>
-                                        <th scope="col">Nomor Plat</th>
-                                        <th scope="col">Lama Rental</th>
-                                        <th scope="col">Total Harga</th>
+                                        <th scope="col">Nomor Anggota</th>
+                                        <th scope="col">Judul Buku</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Tanggal Mulai</th>
+                                        <th scope="col">Tanggal Akhir</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -63,40 +62,32 @@
                                             </td>
                                             <td>
                                                 @if ($peminjaman->user)
-                                                    {{ $peminjaman->user->nosim }}
+                                                    {{ $peminjaman->user->noanggota }}
                                                 @else
-                                                    nomor sim tidak ditemukan
+                                                    nomor anggota tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($peminjaman->mobil)
-                                                    {{ $peminjaman->mobil->merek }}
+                                                @if ($peminjaman->buku)
+                                                    {{ $peminjaman->buku->judul }}
                                                 @else
                                                     data mobil tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($peminjaman->mobil)
-                                                    {{ $peminjaman->mobil->model }}
+                                                @if ($peminjaman->buku)
+                                                    {{ $peminjaman->buku->penulis }}
                                                 @else
                                                     data mobil tidak ditemukan
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($peminjaman->mobil)
-                                                    {{ $peminjaman->mobil->noplat }}
-                                                @else
-                                                    nama tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($peminjaman->tgl_mulai)->isoFormat('DD MMMM YYYY') }}
                                                 -
                                                 {{ \Carbon\Carbon::parse($peminjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}
                                             </td>
-                                            <td>{{ $peminjaman->total_harga }}</td>
                                             <td><a
-                                                    class="{{ $peminjaman->status_kembali == 1 ? 'status_btn' : 'status_btn red_btn' }}">
-                                                    {{ $peminjaman->status_kembali == 1 ? 'Selesai' : 'Proses!' }}</a>
+                                                    class="{{ $peminjaman->status_kembali !== 0 ? 'status_btn' : 'status_btn red_btn' }}">
+                                                    {{ $peminjaman->status_kembali !== 0 ? 'Selesai' : 'Proses!' }}</a>
                                             </td>
                                         </tr>
                                     @endforeach

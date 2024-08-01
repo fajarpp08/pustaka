@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengembalian;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PengembalianController extends Controller
@@ -60,5 +61,21 @@ class PengembalianController extends Controller
     {
         Pengembalian::destroy($id);
         return redirect('/data-pengembalian')->with('message', 'Data berhasil dihapus!');
+    }
+
+    // laporan 
+    public function laporan()
+    {
+        $pengembalians = Pengembalian::paginate(10);
+
+        return view('admin.pengembalian.laporan', compact('pengembalians'));
+    }
+    public function cetakLaporan(Request $request)
+    {
+        $tanggalMulai = Carbon::parse($request->input('tgl_mulai'));
+        $tanggalAkhir = Carbon::parse($request->input('tgl_akhir'))->endOfDay();
+
+        $pengembalians = Pengembalian::whereBetween('created_at', [$tanggalMulai, $tanggalAkhir])->get();
+        return view('admin.pengembalian.laporanpdf', compact('pengembalians'));
     }
 }

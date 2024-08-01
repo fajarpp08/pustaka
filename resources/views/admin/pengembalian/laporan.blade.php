@@ -43,10 +43,8 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Nomor SIM</th>
-                                        <th scope="col">Merek Mobil</th>
-                                        <th scope="col">Model Mobil</th>
-                                        <th scope="col">Nomor Plat</th>
+                                        <th scope="col">Nomor Anggota</th>
+                                        <th scope="col">Judul Buku</th>
                                         <th scope="col">Tanggal Kembali</th>
                                     </tr>
                                 </thead>
@@ -63,33 +61,20 @@
                                             </td>
                                             <td>
                                                 @if ($pengembalian->peminjaman && $pengembalian->peminjaman->user)
-                                                    {{ $pengembalian->peminjaman->user->nosim }}
-                                                @else
-                                                    Nomor SIM tidak ditemukan
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                                    {{ $pengembalian->peminjaman->mobil->merek }}
+                                                    {{ $pengembalian->peminjaman->user->noanggota }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                                    {{ $pengembalian->peminjaman->mobil->model }}
+                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->buku)
+                                                    {{ $pengembalian->peminjaman->buku->judul }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                                    {{ $pengembalian->peminjaman->mobil->noplat }}
-                                                @else
-                                                    Data tidak ditemukan
-                                                @endif
+                                            <td>{{ \Carbon\Carbon::parse($pengembalian->tgl_kembali)->isoFormat('DD MMMM YYYY') }}
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($pengembalian->tgl_kembali)->isoFormat('DD MMMM YYYY') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

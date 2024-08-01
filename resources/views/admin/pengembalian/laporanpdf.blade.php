@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laporan Pengembalian</title>
+    <title>Laporan Data Pengembalian</title>
     <style type="text/css">
         table {
             width: 100%;
@@ -27,17 +27,15 @@
 
 <body>
     <div class="text-center">
-        <h5 class="card-header" style="text-align: center;">Laporan Pengembalian</h5>
+        <h5 class="card-header" style="text-align: center;">Laporan Data Pengembalian</h5>
 
         <table>
             <thead class="text-center">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Nomor SIM</th>
-                    <th>Merek Mobil</th>
-                    <th>Model Mobil</th>
-                    <th>Nomor Plat</th>
+                    <th>Nomor Anggota</th>
+                    <th>Judul Buku</th>
                     <th>Tanggal Kembali</th>
                 </tr>
             </thead>
@@ -55,28 +53,14 @@
                         </td>
                         <td class="table-cell">
                             @if ($pengembalian->peminjaman && $pengembalian->peminjaman->user)
-                                {{ $pengembalian->peminjaman->user->nosim }}
+                                {{ $pengembalian->peminjaman->user->noanggota }}
                             @else
                                 Data tidak ditemukan
                             @endif
                         </td>
                         <td class="table-cell">
-                            @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                {{ $pengembalian->peminjaman->mobil->merek }}
-                            @else
-                                Data tidak ditemukan
-                            @endif
-                        </td>
-                        <td class="table-cell">
-                            @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                {{ $pengembalian->peminjaman->mobil->model }}
-                            @else
-                                Data tidak ditemukan
-                            @endif
-                        </td>
-                        <td class="table-cell">
-                            @if ($pengembalian->peminjaman && $pengembalian->peminjaman->mobil)
-                                {{ $pengembalian->peminjaman->mobil->noplat }}
+                            @if ($pengembalian->peminjaman && $pengembalian->peminjaman->buku)
+                                {{ $pengembalian->peminjaman->buku->judul }}
                             @else
                                 Data tidak ditemukan
                             @endif
@@ -88,6 +72,9 @@
             </tbody>
         </table>
     </div>
+    <script>
+        window.print();
+    </script>
 </body>
 
 </html>
