@@ -61,7 +61,8 @@
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <li class="splide__slide">
-                                            <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}" alt="">
+                                            <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}" alt=""
+                                                style="height: 500px; object-fit: cover;">
                                         </li>
 
                                     </ul>
@@ -69,13 +70,13 @@
                             </div>
                             <div class="car__title">
                                 <h3 class="car__name"><a
-                                        href="{{ route('buku.detail', ['id' => $buku->id]) }}">{{ $buku->judul }}</a>
+                                        href="{{ route('buku.detail', ['slug' => $buku->slug]) }}">{{ $buku->judul }}</a>
                                 </h3>
                                 <span class="car__year">{{ $buku->stok }}</span>
                             </div>
                             <div class="car__footer">
                                 <span class="car__price">{{ $buku->penulis }}</span>
-                                <a href="{{ route('buku.detail', ['id' => $buku->id]) }}"
+                                <a href="{{ route('buku.detail', ['slug' => $buku->slug]) }}"
                                     class="car__detail"><span>Detail</span></a>
                                 <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
                                     data-harga="{{ $buku->harga }}" class="car__more"><span>Pinjam</span></a>

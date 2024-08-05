@@ -26,7 +26,7 @@
 
 <body>
     <!-- main content -->
-    <main class="main main--sign" data-bg="../assets-user/img/bg/background.jpg">
+    <main class="main main--sign" data-bg="../assets-user/img/book-hero.jpg">
         <!-- sign in -->
         <div class="sign">
             <div class="sign__content">

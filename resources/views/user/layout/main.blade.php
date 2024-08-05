@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rental Mobil</title>
-    <link rel="icon" href="{{ asset('assets-admin/img/car-rent-logo-web.png') }}" type="image/png">
+    <title>Perpustakaan MTsN 4 Kota Padang</title>
+    <link rel="icon" href="{{ asset('assets-user/img/logo-sekolah.png') }}" type="image/png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('assets-user/css/bootstrap.min.css') }}">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body>
+<body onload="startClock()">
     <!-- header -->
     @include('user.layout.header')
     <!-- end header -->
@@ -42,6 +42,45 @@
     <script src="{{ asset('assets-user/js/slimselect.min.js') }}"></script>
     <script src="{{ asset('assets-user/js/smooth-scrollbar.js') }}"></script>
     <script src="{{ asset('assets-user/js/main.js') }}"></script>
+    <script>
+        // JavaScript untuk memperbarui jam
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            var formattedTime = hours + ':' + minutes + ':' + seconds;
+            document.getElementById('realtime-clock').innerText = formattedTime;
+        }
+
+        // JavaScript untuk memperbarui tanggal
+        function updateDate() {
+            var now = new Date();
+            var day = now.getDate().toString().padStart(2, '0');
+            var month = (now.getMonth() + 1).toString().padStart(2, '0');
+            var year = now.getFullYear();
+            var formattedDate = day + '-' + month + '-' + year;
+            document.getElementById('realtime-date').innerText = formattedDate;
+        }
+
+        // JavaScript untuk memperbarui hari
+        function updateDay() {
+            var now = new Date();
+            var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            var dayName = days[now.getDay()];
+            document.getElementById('realtime-day').innerText = dayName;
+        }
+
+        // Memperbarui jam, tanggal, dan hari setiap detik
+        function startClock() {
+            updateClock();
+            updateDate();
+            updateDay();
+            setInterval(updateClock, 1000);
+            setInterval(updateDate, 1000);
+            setInterval(updateDay, 1000);
+        }
+    </script>
 </body>
 
 </html>

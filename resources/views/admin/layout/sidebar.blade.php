@@ -2,7 +2,7 @@
     <div class="logo d-flex flex-column align-items-center">
         <a href="/dashboardadmin"><img src="../assets-admin/img/logo.png" alt></a>
         <div class="text-center mt-2">
-            <a class="logo-text">Perpustakaan MTsN Parak Laweh</a>
+            <a class="logo-text">Perpustakaan MTsN 4 Kota Padang</a>
         </div>
     </div>
     <ul id="sidebar_menu">

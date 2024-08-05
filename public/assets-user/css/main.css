@@ -2466,7 +2466,7 @@ body::-webkit-scrollbar-thumb {
     left: 66%;
     top: 25px;
     bottom: 40px;
-    background: url("../img/home/home.png") no-repeat center/cover;
+    background: url("../img/book-hero.jpg") no-repeat center/cover;
     pointer-events: none;
   }
 }
@@ -5028,16 +5028,16 @@ body::-webkit-scrollbar-thumb {
 ==============================*/
 .footer {
   background-color: #e5eaf2;
-  padding-top: 30px;
+  padding-top: 0;
   position: relative;
   overflow: hidden;
 }
 .footer__logo {
-  margin-top: 60px;
+  margin-top: 10px;
 }
 .footer__logo img {
   width: auto;
-  height: 40px;
+  height: 80px;
   display: block;
 }
 .footer__tagline {
@@ -5107,8 +5107,8 @@ body::-webkit-scrollbar-thumb {
 }
 .footer__content {
   position: relative;
-  margin-top: 60px;
-  padding: 0 20px 20px;
+  /* margin-top: 0px; */
+  /* padding: 0 10px 10px; */
   background: linear-gradient(1turn, #f1f6fd 30%, #edf1f7);
   box-shadow: 3px 3px 9px rgba(164,164,186,0.2);
   border: 1px solid #fff;
@@ -5131,7 +5131,7 @@ body::-webkit-scrollbar-thumb {
 }
 .footer__title {
   display: block;
-  margin-top: 30px;
+  margin-top: 10px;
   font-size: 16px;
   color: #33334f;
   font-family: 'Nunito', sans-serif;
@@ -5262,7 +5262,7 @@ body::-webkit-scrollbar-thumb {
     padding-top: 20px;
   }
   .footer__content {
-    margin-top: 70px;
+    margin-top: 20px;
     padding: 30px 20px;
     display: flex;
     flex-direction: row;
@@ -5271,7 +5271,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
   }
   .footer__logo {
-    margin-top: 50px;
+    margin-top: 10px;
   }
   .footer__title {
     margin-top: 50px;
@@ -5286,7 +5286,21 @@ body::-webkit-scrollbar-thumb {
   .footer__copyright {
     margin-top: 0;
     order: 1;
-  }
+  } 
+  .footer__image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    /* padding: 0%; */
+}
+
+.footer__image {
+  width: calc(50% - 10px); /* Adjust width to accommodate margin */
+  margin: 0px; /* Add margin to the left and right */
+  height: auto;
+  object-fit: cover;
+}
+
 }
 @media (min-width: 1200px) {
   .footer__social {

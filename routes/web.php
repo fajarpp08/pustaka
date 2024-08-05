@@ -48,10 +48,12 @@ Route::middleware(['auth'])->group(function () {
 
     // ROUTE User / Login Access Only
     Route::get('/dashboarduser', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
+    Route::get('/getNotifikasi', [DashboardController::class, 'getUserBooks']);
     Route::get('/buku', [DashboardController::class, 'buku'])->name('buku');
-    Route::get('/buku/detail/{id}', [DashboardController::class, 'bukuDetail'])->name('buku.detail');
+    Route::get('/buku/detail/{slug}', [DashboardController::class, 'bukuDetail'])->name('buku.detail');
     Route::get('/account', [DashboardController::class, 'account'])->name('account');
-
+    Route::get('/informasi', [DashboardController::class, 'informasi'])->name('informasi');
+    Route::get('/pengumuman/{slug}', [DashboardController::class, 'pengumumanDetail'])->name('pengumuman.detail');
     // Peminjaman User
     Route::get('/pinjam/form/{buku_id}', [PeminjamanController::class, 'formPeminjaman'])->name('pinjam.form');
     Route::post('/pinjam/create', [PeminjamanController::class, 'createPeminjaman'])->name('pinjam.create');

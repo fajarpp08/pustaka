@@ -25,7 +25,7 @@
 
 <body>
     <!-- main content -->
-    <main class="main main--sign" data-bg="../assets-user/img/bg/background.jpg">
+    <main class="main main--sign" data-bg="../assets-user/img/book-hero.jpg">
         <!-- registration form -->
         <div class="sign">
             <div class="sign__content">
@@ -39,16 +39,6 @@
                             class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}"
                             id="nama" aria-describedby="emailHelp" name="nama">
                         @error('nama')
-                            <div class="error">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="sign__group">
-                        <input type="text" class="sign__input" placeholder="Masukkan Alamat"
-                            class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}"
-                            id="alamat" aria-describedby="emailHelp" name="alamat">
-                        @error('alamat')
                             <div class="error">
                                 {{ $message }}
                             </div>
@@ -74,17 +64,16 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- <div class="sign__group">
-                        <input type="text" class="sign__input" placeholder="Masukkan Nomor Anggota"
-                            class="form-control @error('noanggota') is-invalid @enderror"
-                            value="{{ old('noanggota') }}" id="noanggota" aria-describedby="emailHelp"
-                            name="noanggota">
-                        @error('noanggota')
+                    <div class="sign__group">
+                        <input type="text" class="sign__input" placeholder="Masukkan Alamat"
+                            class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}"
+                            id="alamat" aria-describedby="emailHelp" name="alamat">
+                        @error('alamat')
                             <div class="error">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div> --}}
+                    </div>
                     <div class="sign__group">
                         <input type="password" class="sign__input" placeholder="Masukkan Password"
                             class="form-control @error('password') is-invalid @enderror" id="password" name="password">

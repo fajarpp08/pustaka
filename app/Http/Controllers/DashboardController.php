@@ -10,6 +10,7 @@ use App\Models\Pengembalian;
 use App\Models\Pengumuman;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -35,19 +36,29 @@ class DashboardController extends Controller
         $bukus = Buku::all();
         $pengumumans = Pengumuman::take(6)->get();
         $galeris = Galeri::take(6)->get();
-        return view('user.dashboard.index', compact('bukus', 'galeris','pengumumans'));
+
+        $user = Auth::user();
+        $books = Peminjaman::leftJoin('bukus', 'peminjamans.buku_id', 'bukus.id')->where('user_id', $user->id)->get();
+        // dd($books);
+        return view('user.dashboard.index', compact('bukus', 'galeris', 'pengumumans'));
     }
     public function buku()
     {
         $bukus = Buku::all();
-        $bukus = Buku::paginate(6);
+        // $bukus = Buku::where('slug', $slug)->firstOrFail();
         return view('user.dashboard.buku', compact('bukus'));
     }
-    public function bukuDetail($id)
+    public function bukuDetail($slug = null)
     {
-        $bukus = Buku::find($id);
+        // $bukus = Buku::find($id);
+        $bukus = Buku::where('slug', $slug)->firstOrFail();
+
+        // dd($bukus);
         $bukusAll = Buku::all();
-        return view('user.dashboard.detail', compact('bukus', 'bukusAll'));
+        return view('user.dashboard.detail', [
+            'bukusAll' => $bukusAll,
+            'bukus' => $bukus,
+        ]);
     }
     public function account()
     {
@@ -60,10 +71,26 @@ class DashboardController extends Controller
             // ]
         );
     }
-    public function berita()
+    public function informasi()
     {
         // $beritas = Berita::all();
         $pengumumans = Pengumuman::all();
-        return view('user.dashboard.berita', compact('pengumumans'));
+        $galeris = Galeri::all();
+        return view('user.dashboard.informasi', compact('pengumumans', 'galeris'));
+    }
+    public function pengumumanDetail($slug)
+    {
+        $pengumumans = Pengumuman::where('slug', $slug)->firstOrFail();
+        // dd($pengumumans);
+        // $pengumumansAll = Pengumuman::where('id', '!=', $pengumumans->id)->get();
+        return view('user.dashboard.detailpengumuman', compact('pengumumans'));
+    }
+
+    public function getUserBooks()
+    {
+        $user = Auth::user();
+        $books = Buku::where('user_id', $user->id)->get();
+
+        return response()->json($books);
     }
 }

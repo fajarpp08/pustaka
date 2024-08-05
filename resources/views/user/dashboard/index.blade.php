@@ -12,10 +12,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="home__content">
-                            <h1 class="home__title">Selamat datang di<br>Perpustakaan MTsN Parak Laweh</h1>
-                            <p class="home__text">Sistem informasi perpustakaan yang memudahkan siswa <br>
-                                dalam melakukan peminjaman buku dan melihat ketersediaan buku</p>
-                            dengan mudah, cepat, aman &amp; nyaman</p>
+                            <h1 class="home__title">Selamat datang di<br>Perpustakaan MTsN 4<br> Kota Padang</h1>
+                            <p class="home__text">Sistem informasi perpustakaan yang memudahkan siswa
+                                dalam <br> melakukan peminjaman buku dan melihat ketersediaan buku<br>
+                                dengan mudah, cepat, aman &amp; nyaman.</p>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                 <!-- title -->
                 <div class="col-12">
                     <div class="main__title main__title--first">
-                        <h2>Our Cars!</h2>
+                        <h2>Our Books!</h2>
 
                         <a href="/buku" class="main__link">View more <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
@@ -63,8 +63,9 @@
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <li class="splide__slide">
-                                            <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"  class="img-fluid rounded img-zoomin w-100" alt=""
-                                            style="height: 500px; object-fit: cover;">
+                                            <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
+                                                class="img-fluid rounded img-zoomin w-100" alt=""
+                                                style="height: 500px; object-fit: cover;">
                                         </li>
                                     </ul>
                                 </div>
@@ -80,8 +81,9 @@
 
                             <div class="car__footer">
                                 <span class="car__price">{{ $buku->penulis }}</span>
-                                <a href="{{ route('buku.detail', ['id' => $buku->id]) }}"
-                                    class="car__detail"><span>Detail</span></a>
+                                <a href="/buku/detail/{{ $buku->slug }}" class="car__detail"><span>Detail</span></a>
+                                {{-- href="{{ route('detail.pengumuman', ['slug' => $pengumuman->slug]) }}" --}}
+
                                 <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
                                     class="car__more"><span>Pinjam</span></a>
                             </div>
@@ -105,7 +107,7 @@
                 <!-- title -->
                 <div class="col-12">
                     <div class="main__title">
-                        <h2>Peminjaman buku dengan 4 langkah mudah!</h2>
+                        <h2>Peminjaman buku dengan 4 langkah mudah !</h2>
                     </div>
                 </div>
                 <!-- end title -->
@@ -135,7 +137,7 @@
                         </span>
                         <h3 class="step1__title">Cari buku</h3>
                         <p class="step1__text">Cari buku yang sesuai dengan berbagai pilihan buku.
-                            Buku berkualitas untuk memastikan produktivitas pembelajaran pada siswa.
+                            Buku berkualitas guna memastikan produktivitas pembelajaran siswa.
                         </p>
                     </div>
                 </div>
@@ -149,8 +151,8 @@
                             </svg>
                         </span>
                         <h3 class="step1__title">Peminjaman</h3>
-                        <p class="step1__text">Setelah menemukan buku yang sesuai, Anda tinggal mengklik tombol 'Pinjam'.
-                            Proses peminjaman akan dilakukan secara cepat dan mudah.
+                        <p class="step1__text">Setelah menemukan buku yang sesuai, tinggal mengklik tombol 'Pinjam'.
+                            Peminjaman diproses secara cepat dan mudah.
                         </p>
                     </div>
                 </div>
@@ -207,9 +209,9 @@
                         <li class="splide__slide">
                             <div class="post post--carousel">
                                 <a href="article.html" class="post__img">
-                                    <img src="{{ asset('storage/pengumuman/' . $pengumuman->gambar_pengumuman) }}" 
-                                    class="img-fluid rounded img-zoomin w-100" alt=""
-                                    style="height: 300px; object-fit: cover;">
+                                    <img src="{{ asset('storage/pengumuman/' . $pengumuman->gambar_pengumuman) }}"
+                                        class="img-fluid rounded img-zoomin w-100" alt=""
+                                        style="height: 300px; object-fit: cover;">
                                 </a>
 
                                 <div class="post__content">
@@ -222,7 +224,7 @@
                                                 viewBox="0 0 24 24">
                                                 <path
                                                     d="M15,11H13V7a1,1,0,0,0-2,0v5a1,1,0,0,0,1,1h3a1,1,0,0,0,0-2ZM12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Z" />
-                                            </svg>{{ \Carbon\Carbon::parse($pengumuman->tanggal_pengumuman)->format('d-m-Y') }}</span>
+                                            </svg>{{ \Carbon\Carbon::parse($pengumuman->tanggal_pengumuman)->isoFormat('DD MMMM YYYY') }}</span>
                                         {{-- <span class="post__comments"><svg xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24">
                                                 <path

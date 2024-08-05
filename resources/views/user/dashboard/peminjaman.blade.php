@@ -5,27 +5,25 @@
     <main class="main">
         <div class="container">
             {{-- DAFTAR PEMINJAMAN  --}}
-            <!-- title -->
-            <div class="col-12">
-                <div class="main__title main__title--page">
-                    <h1>Daftar Peminjaman</h1>
-                </div>
-            </div>
-            <!-- end title -->
 
             {{-- content --}}
             <div class="row">
+                <!-- breadcrumb -->
                 <div class="col-12">
-                    {{-- <div class="profile">
-                        <!-- tabs nav -->
-                        <ul class="nav nav-tabs profile__tabs" id="profile__tabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button"
-                                    role="tab" aria-controls="tab-1" aria-selected="true">Data</button>
-                            </li>
-                        </ul>
-                        <!-- end tabs nav -->
-                    </div> --}}
+                    <ul class="breadcrumbs">
+                        <li class="breadcrumbs__item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumbs__item breadcrumbs__item--active">Peminjaman</li>
+                    </ul>
+                </div>
+                <!-- end breadcrumb -->
+                <!-- title -->
+                <div class="col-12">
+                    <div class="main__title main__title--page">
+                        <h1>Daftar Peminjaman</h1>
+                    </div>
+                </div>
+                <!-- end title -->
+                <div class="col-12">
 
                     <!-- Data Peminjaman OnGoing -->
                     <div class="tab-content">
@@ -38,7 +36,16 @@
                                             <div class="cart__table-scroll">
                                                 <table class="cart__table">
                                                     {{-- dd($pinjamanUser); --}}
-
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Judul</th>
+                                                            <th>Penulis</th>
+                                                            <th>Sinopsis</th>
+                                                            <th>Tanggal pinjam</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
                                                     @php
                                                         $pinjamExist = false;
                                                     @endphp
@@ -49,17 +56,6 @@
                                                             @php
                                                                 $pinjamExist = true;
                                                             @endphp
-                                                            <thead>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>Judul</th>
-                                                                    <th>Penulis</th>
-                                                                    <th>Sinopsis</th>
-                                                                    <th>Tanggal pinjam</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-
                                                             <tbody id="card{{ $daftarPinjaman->id }}">
                                                                 <tr>
                                                                     <td>
@@ -80,7 +76,6 @@
                                                                             -
                                                                             {{ \Carbon\Carbon::parse($daftarPinjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}</span>
                                                                     </td>
-                                                                    {{-- <td>Rp. {{ $daftarPinjaman->total_harga }}</td> --}}
                                                                     <td>
                                                                         <form
                                                                             action="{{ route('kembalikan', ['pinjam' => $daftarPinjaman->id]) }}"
@@ -98,29 +93,23 @@
                                                                             </button>
                                                                         </form>
                                                                     </td>
-                                                                    {{-- <form action="{{ route('kembalikan', ['peminjaman' => $peminjaman->id]) }}" method="post">
-                                                                        @csrf
-                                                                        <button type="submit" class="btn btn-danger py-2 mt-1" onclick="return confirm('Apakah Anda yakin untuk dikembalikan?')">Kembalikan</button>
-                                                                    </form> --}}
                                                                 </tr>
                                                             </tbody>
                                                         @endif
                                                     @empty
-                                                        {{-- <div class="col-md-12">
-                                                            <p>Anda belum pernah melakukan penyewaan, mulai penyewaan.</p>
-                                                        </div> --}}
                                                     @endforelse
 
-                                                    @if (!$pinjamExist)
-                                                        <div class="col-md-12">
-                                                            <p style="color: black;">Anda belum melakukan peminjaman buku
-                                                                saat ini,
-                                                                mari melakukan peminjaman lagi.</p>
-                                                        </div>
-                                                        <a href="/buku" type="button"
-                                                            class="btn btn-primary btn-sm">Mulai pinjam</a>
-                                                    @endif
+
                                                 </table>
+                                                @if (!$pinjamExist)
+                                                    <div class="col-md-12">
+                                                        <p style="color: black;">
+                                                            Saat ini anda belum melakukan peminjaman buku,
+                                                            mari melakukan peminjaman lagi.</p>
+                                                    </div>
+                                                    <a href="/buku" type="button" class="btn btn-primary btn-sm">Mulai
+                                                        pinjam</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -160,28 +149,29 @@
                                     <div class="cart">
                                         <div class="cart__table-wrap">
                                             <div class="cart__table-scroll">
+
                                                 <table class="cart__table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Judul</th>
+                                                            <th>Penulis</th>
+                                                            <th>Sinopsis</th>
+                                                            <th>Tanggal pinjam</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+
                                                     @php
                                                         $pinjamExist = false;
                                                     @endphp
 
                                                     @forelse ($completedPinjamans as $riwayatPinjaman)
-                                                        {{-- @if (!$riwayatPinjaman->status_kembali) --}}
-                                                        <!-- Tampilkan card hanya jika mobil belum dikembalikan -->
+                                                        <!-- Tampilkan card hanya jika buku belum dikembalikan -->
                                                         @php
                                                             $pinjamExist = true;
                                                         @endphp
-                                                        <thead>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th>Judul</th>
-                                                                <th>Penulis</th>
-                                                                <th>Sinopsis</th>
-                                                                <th>Tanggal pinjam</th>
-                                                                <th>Status</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
 
                                                         <tbody id="card{{ $riwayatPinjaman->id }}">
                                                             <tr>
@@ -207,33 +197,22 @@
                                                                         class="{{ $riwayatPinjaman->status_kembali !== 0 ? 'status_btn' : 'status_btn red_btn' }}">
                                                                         {{ $riwayatPinjaman->status_kembali !== 0 ? 'Selesai' : 'Proses!' }}</a>
                                                                 </td>
-
-                                                                {{-- <td>
-                                                        <a class="{{ $riwayatPinjaman->status_kembali ? 'status_btn' : 'status_btn red_btn' }}">
-                                                            {{ $riwayatPinjaman->status_kembali ? 'Selesai' : 'Proses!' }}
-                                                        </a>
-                                                    </td> --}}
                                                             </tr>
                                                         </tbody>
-                                                        {{-- @endif --}}
                                                     @empty
-                                                        <div class="col-md-12">
-                                                            <p>Anda belum pernah melakukan peminjaman buku, mulai
-                                                                peminjaman.</p>
-                                                            <a href="/buku" type="button"
-                                                                class="btn btn-primary btn-sm">Mulai pinjam</a>
-                                                        </div>
                                                     @endforelse
 
-                                                    {{-- @if (!$pinjamExist)
-                                                        <div class="col-md-12">
-                                                            <p style="color: black;">Anda belum melakukan penyewaan buku
-                                                                saat ini,
-                                                                mari melakukan penyewaan lagi.</p>
-                                                        </div>
 
-                                                    @endif --}}
                                                 </table>
+                                                @if (!$pinjamExist)
+                                                    <div class="col-md-12">
+                                                        <p style="color: black;">Anda belum pernah melakukan peminjaman
+                                                            buku,
+                                                            mari melakukan peminjaman.</p>
+                                                    </div>
+                                                    <a href="/buku" type="button" class="btn btn-primary btn-sm">Mulai
+                                                        pinjam</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

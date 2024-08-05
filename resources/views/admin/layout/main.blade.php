@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Rental Mobil</title>
-    <link rel="icon" href="{{ asset('assets-admin/img/car-rent-logo-web.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets-user/img/logo-sekolah.png') }}" type="image/png">
 
     <link rel="stylesheet" href="{{ asset('assets-admin/css/bootstrap1.min.css') }}" />
 
