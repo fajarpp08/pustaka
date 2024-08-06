@@ -10,7 +10,8 @@
                                 <h3 class="mb-0">Add Data Pengumuman</h3>
                             </div>
                         </div>
-                        <form class="needs-validation" action ="/data-pengumuman" method="post" enctype="multipart/form-data">
+                        <form class="needs-validation" action ="/data-pengumuman" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Judul Pengumuman</label>
@@ -25,7 +26,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Tanggal Pengumuman</label>
-                                <input type="date" id="exampleFormControlInput1" placeholder="Masukkan Tanggal pengumuman"
+                                <input type="date" id="exampleFormControlInput1"
+                                    placeholder="Masukkan Tanggal pengumuman"
                                     class="form-control @error('tanggal_pengumuman') is-invalid @enderror"
                                     value="{{ old('tanggal_pengumuman') }}" name="tanggal_pengumuman">
                                 @error('tanggal_pengumuman')
@@ -36,7 +38,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Deskripsi Pengumuman</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan Deskripsi pengumuman"
+                                <input type="text" id="exampleFormControlInput1"
+                                    placeholder="Masukkan Deskripsi pengumuman"
                                     class="form-control @error('deskripsi_pengumuman') is-invalid @enderror"
                                     value="{{ old('deskripsi_pengumuman') }}" name="deskripsi_pengumuman">
                                 @error('deskripsi_pengumuman')

@@ -25,9 +25,6 @@ class PengembalianController extends Controller
     {
         return view('admin.pengembalian.edit', [
             'pengembalians' => Pengembalian::find($id),
-            // 'users' => User::all(),
-            // 'mobils' => Mobil::all(),
-            // 'peminjamans' => Peminjaman::all()
         ]);
     }
 

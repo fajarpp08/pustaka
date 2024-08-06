@@ -1,6 +1,5 @@
 @extends('user.layout.main')
 @section('content')
-    {{-- dd($completedPinjamans); --}}
     <!-- main content -->
     <main class="main">
         <div class="container">

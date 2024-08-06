@@ -82,7 +82,6 @@ class GaleriController extends Controller
             $file->storeAs('galeri', $fileName, 'public');
             $galeris->gambar_galeri = $fileName;
         }
-        // dd($galeris);
         $galeris->save();
 
         return redirect('/data-galeri')->with('message', 'Data Galeri berhasil diubah!');

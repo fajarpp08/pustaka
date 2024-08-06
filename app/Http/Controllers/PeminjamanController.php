@@ -47,21 +47,18 @@ class PeminjamanController extends Controller
             'tgl_akhir' => 'required',
             'buku_id' => 'required',
             'user_id' => 'required',
-            // 'status_kembali' => 'required|boolean',
         ], [
 
             'tgl_mulai.required' => 'kolom tanggal harus diisi',
             'tgl_akhir.required' => 'kolom tanggal harus diisi',
             'buku_id.required' => 'kolom buku harus diisi',
             'user_id.required' => 'kolom user harus diisi',
-            // 'status_kembali.required' => 'status kembali',
         ]);
         // dd($peminjamans);
         $peminjamans->tgl_mulai = $validatedData['tgl_mulai'];
         $peminjamans->tgl_akhir = $validatedData['tgl_akhir'];
         $peminjamans->buku_id = $validatedData['buku_id'];
         $peminjamans->user_id = $validatedData['user_id'];
-        // $peminjamans->status_kembali = $validatedData['status_kembali'];
 
         $peminjamans->save();
 
@@ -76,21 +73,7 @@ class PeminjamanController extends Controller
         Peminjaman::destroy($id);
         return redirect('/data-peminjaman')->with('message', 'Data berhasil dihapus');
     }
-    // public function laporan()
-    // {
-    //     $peminjamans = Peminjaman::paginate(10);
 
-    //     return view('admin.peminjaman.laporan', compact('peminjamans'));
-    // }
-    // public function cetakLaporan(Request $request)
-    // {
-    //     $tanggalMulai = Carbon::parse($request->input('tgl_mulai'));
-    //     $tanggalAkhir = Carbon::parse($request->input('tgl_akhir'))->endOfDay();
-
-    //     $peminjamans = Peminjaman::whereBetween('created_at', [$tanggalMulai, $tanggalAkhir])->get();
-    //     $pdf = Pdf::loadview('admin.peminjaman.laporanpdf', ['peminjamans' => $peminjamans]);
-    //     return $pdf->download('Laporan_Peminjaman.pdf');
-    // }
 
 
     // USER 
@@ -217,7 +200,5 @@ class PeminjamanController extends Controller
 
         $peminjamans = Peminjaman::whereBetween('created_at', [$tanggalMulai, $tanggalAkhir])->get();
         return view('admin.peminjaman.laporanpdf', compact('peminjamans'));
-        // $pdf = PDF::loadview('admin.peminjaman.laporanpdf', ['peminjamans' => $peminjamans]);
-        // return $pdf->download('Laporan_Peminjaman.pdf');
     }
 }

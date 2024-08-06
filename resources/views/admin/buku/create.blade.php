@@ -75,25 +75,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
-                                    <label for="lembaga_id">Lembaga</label>
-                                    <select class="form-control" type="text" id="lembaga_id" placeholder="Pilih Lembaga"
-                                        name="lembaga_id">
-                                        <option selected disabled>- Pilih Lembaga -</option>
-                                        @foreach ($lembagas as $lembaga)
-                                            @if (old('lembaga_id', $lembaga->lembaga_id) == $lembaga->id)
-                                                <option value="{{ $lembaga->id }}" selected>{{ $lembaga->nama_lembaga }}
-                                                </option>   
-                                            @else
-                                                <option value="{{ $lembaga->id }}">{{ $lembaga->nama_lembaga }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    @error('lembaga_id')
-                                        <div class="error">{{ $message }}</div>
-                                    @enderror
-                                </div> --}}
-
                             <div class="mb-3">
                                 <label class="form-label input-group mb-3" for="inputGroupFile02">Foto</label>
                                 <input type="file" class="form-control" value="{{ old('gambar_buku') }}"

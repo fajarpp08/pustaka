@@ -71,7 +71,6 @@
                                             <img src="{{ asset('assets-admin/img/profile_user.png') }}" alt="buku"
                                                 class="img-fluid rounded-circle" width="80">
                                         @endif
-                                        {{-- <img src="{{ asset('storage/buku/' . $buku->gambar_buku) }}" alt> --}}
                                     </div>
                                     <h4>{{ $buku->judul }}</h4>
                                     <p>{{ $buku->penulis }}</p>

@@ -18,9 +18,6 @@
                                         </form>
                                     </div>
                                 </div>
-                                {{-- <div class="add_button ms-2">
-                                    <a href="/pengembalian/create" class="btn_1">Add New</a>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="QA_table mb_30">
@@ -81,7 +78,6 @@
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($pengembalian->tgl_kembali)->isoFormat('DD MMMM YYYY') }}
                                             </td>
-                                            {{-- <td>{{ $pengembalian->status_kembali }}</td> --}}
                                             <td>
                                                 <ul class="list-inline m-0">
                                                     <a href="/data-pengembalian/{{ $pengembalian->id }}/edit"

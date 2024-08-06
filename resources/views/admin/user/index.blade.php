@@ -13,7 +13,6 @@
                         <div class="white_box_tittle list_header">
                             <h4>Data User</h4>
                             <div class="box_right d-flex lms_block">
-                                {{-- <form action="{{ route('useradm.search') }}" method="get"> --}}
                                 <div class="serach_field_2">
                                     <div class="search_inner">
                                         <div class="search_field">

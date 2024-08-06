@@ -36,17 +36,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Nomor Plat</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan nomor plat mobil"
-                                    class="form-control @error('noplat') is-invalid @enderror"
-                                    value="{{ old('noplat', $mobils->noplat) }}" name="noplat">
-                                @error('noplat')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Sinopsis</label>
                                 <input type="text" id="exampleFormControlInput1" placeholder="Masukkan sinopsis"

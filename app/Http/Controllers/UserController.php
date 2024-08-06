@@ -129,20 +129,4 @@ class UserController extends Controller
         return redirect('/data-user')->with('message', 'Data berhasil dihapus!');
     }
 
-    // fitur search user
-    // public function search(Request $request)
-    // {
-    //     $keyword = $request->input('keyword');
-    //     // dd($keyword);
-
-    //     $users = User::where(function ($query) use ($keyword) {
-    //         $query->where('nama', 'like', "%$keyword%")
-    //             ->orWhere('nosim', 'like', "%$keyword%")
-    //             ->orWhere('role', 'like', "%$keyword%");
-    //     })->paginate(10);
-    //     // ->toSql($users);
-    //     // dd($users);
-
-    //     return view('admin.user.index', compact('users', 'keyword'));
-    // }
 }

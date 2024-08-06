@@ -1,10 +1,5 @@
 @extends('admin.layout.main')
 @section('content')
-    {{-- @if (session()->has('pesan'))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <i class="fas fa-check"></i> {{ session('pesan') }}
-        </div>
-    @endif --}}
     <div class="main_content_iner ">
         <div class="container-fluid p-0">
             <div class="row justify-content-center">
@@ -13,20 +8,6 @@
                         <div class="white_box_tittle list_header">
                             <h4>Data Buku</h4>
                             <div class="box_right d-flex lms_block">
-                                {{-- search --}}
-                                {{-- <div class="serach_field_2">
-                                    <div class="search_inner">
-                                        <form action="{{ route('mobils.searchname') }}" method="get">
-                                            <div class="search_field">
-                                                <input type="text" name="keyword"
-                                                    value="{{ isset($keyword) ? $keyword : '' }}"   
-                                                    placeholder="Search content here...">
-                                            </div>
-                                            <button type="submit"> <i class="ti-search"></i> </button>
-                                        </form>
-                                    </div>
-                                </div> --}}
-                                {{-- end search --}}
                                 <div class="add_button ms-2">
                                     <a href="/data-buku/create" class="btn_1">Add New</a>
                                 </div>

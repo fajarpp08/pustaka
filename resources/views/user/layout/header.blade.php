@@ -151,7 +151,6 @@
             const daysLeft = (endDate - today) / (1000 * 60 * 60 * 24);
             console.log(startDate.toLocaleDateString('id-ID', 'DD MMMM YYYY'))
             console.log(today.toLocaleDateString('id-ID', 'DD MMMM YYYY'))
-            // console.log(endDate.toLocaleDateString('id-ID'))
             console.log(daysLeft)
 
             if (daysLeft < 7 && book.status_kembali == false) {
@@ -184,22 +183,4 @@
         });
     }
 
-    // function showNotification(judul, endDate) {
-    //     const options = {
-    //         body: `Return date is approaching: ${endDate.toLocaleDateString()}`,
-    //         icon: '/path/to/icon.png',
-    //     };
-
-    //     // alert(judul)
-
-    //     if (Notification.permission === 'granted') {
-    //         new Notification(`Reminder: ${judul}`, options);
-    //     } else if (Notification.permission !== 'denied') {
-    //         Notification.requestPermission().then(permission => {
-    //             if (permission === 'granted') {
-    //                 new Notification(`Reminder: ${judul}`, options);
-    //             }
-    //         });
-    //     }
-    // }
 </script>

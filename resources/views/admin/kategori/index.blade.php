@@ -1,10 +1,5 @@
 @extends('admin.layout.main')
 @section('content')
-    {{-- @if (session()->has('pesan'))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <i class="fas fa-check"></i> {{ session('pesan') }}
-        </div>
-    @endif --}}
     <div class="main_content_iner ">
         <div class="container-fluid p-0">
             <div class="row justify-content-center">
@@ -15,16 +10,7 @@
                             <div class="box_right d-flex lms_block">
                                 {{-- search --}}
                                 <div class="serach_field_2">
-                                    {{-- <div class="search_inner">
-                                        <form action="{{ route('mobils.searchname') }}" method="get">
-                                            <div class="search_field">
-                                                <input type="text" name="keyword"
-                                                    value="{{ isset($keyword) ? $keyword : '' }}"   
-                                                    placeholder="Search content here...">
-                                            </div>
-                                            <button type="submit"> <i class="ti-search"></i> </button>
-                                        </form>
-                                    </div> --}}
+                                    {{-- tidak ada search --}}
                                 </div>
                                 {{-- end search --}}
                                 <div class="add_button ms-2">
@@ -46,7 +32,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $kategori->nama_kategori }}</td>
-                                            {{-- <td>{{ $mobil->foto }}</td> --}}
                                             <td>
                                                 <ul class="list-inline m-0">
                                                     <a href="/data-kategori/{{ $kategori->id }}/edit"

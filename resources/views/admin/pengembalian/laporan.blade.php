@@ -30,9 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 d-flex justify-content-center align-items-center mb-6">
-                                    {{-- <div class="add_button ms-2"> --}}
                                     <button class="btn_1" type="submit">Export</but>
-                                        {{-- </div> --}}
                                 </div>
                             </div>
                         </form>

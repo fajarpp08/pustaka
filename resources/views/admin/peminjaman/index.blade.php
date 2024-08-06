@@ -18,9 +18,6 @@
                                         </form>
                                     </div>
                                 </div>
-                                {{-- <div class="add_button ms-2">
-                                    <a href="/useradm/create" class="btn_1">Add New</a>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="QA_table mb_30">
@@ -83,8 +80,6 @@
                                                 -
                                                 {{ \Carbon\Carbon::parse($peminjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}
                                             </td>
-                                            {{-- <td>{{ $peminjaman->total_harga }}</td> --}}
-                                            {{-- <td>{{ $peminjaman->status_kembali }}</td> --}}
                                             <td><a
                                                     class="{{ $peminjaman->status_kembali !== 0 ? 'status_btn' : 'status_btn red_btn' }}">
                                                     {{ $peminjaman->status_kembali !== 0 ? 'Selesai' : 'Proses!' }}</a>

@@ -26,18 +26,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                            {{-- <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect1">Nomor Anggota</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="user_id">
-                                    @foreach ($users as $user)
-                                        @if (old('user_id', $peminjamans->user_id) == $user->id)
-                                            <option value="{{ $user->id }}" selected>{{ $user->noanggota }}</option>
-                                        @else
-                                            <option value="{{ $user->id }}">{{ $user->noanggota }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlSelect1">Buku</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="buku_id">
@@ -72,26 +60,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlSelect1">Status</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="status_kembali">
-                                    <option value="false" {{ $peminjamans->status_kembali == 0 ? 'selected' : '' }}>
-                                        Proses</option>
-                                    <option value="true" {{ $peminjamans->status_kembali !== 0 ? 'selected' : '' }}>
-                                        Selesai</option>
-                                </select>
-                            </div> --}}
-                            {{-- <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlInput1">Total Harga</label>
-                                <input type="text" id="exampleFormControlInput1" placeholder="Masukkan total harga"
-                                    class="form-control @error('total_harga') is-invalid @enderror"
-                                    value="{{ old('total_harga', $peminjamans->total_harga) }}" name="total_harga">
-                                @error('total_harga')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div> --}}
                             <div class="container mt-3">
                                 <div class="row">
                                     <div class="col-auto">

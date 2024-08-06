@@ -89,6 +89,5 @@
             </div>
         </div>
         {{-- end footer credit --}}
-
     </div>
 </footer>

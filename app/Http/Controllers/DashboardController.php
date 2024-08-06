@@ -41,21 +41,17 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         $books = Peminjaman::leftJoin('bukus', 'peminjamans.buku_id', 'bukus.id')->where('user_id', $user->id)->get();
-        // dd($books);
         return view('user.dashboard.index', compact('bukus', 'galeris', 'galeriFooter', 'pengumumans'));
     }
     public function buku()
     {
         $bukus = Buku::all();
-        // $bukus = Buku::where('slug', $slug)->firstOrFail();
         return view('user.dashboard.buku', compact('bukus'));
     }
     public function bukuDetail($slug = null)
     {
-        // $bukus = Buku::find($id);
         $bukus = Buku::where('slug', $slug)->firstOrFail();
 
-        // dd($bukus);
         $bukusAll = Buku::all();
         return view('user.dashboard.detail', [
             'bukusAll' => $bukusAll,
@@ -64,13 +60,8 @@ class DashboardController extends Controller
     }
     public function account()
     {
-        // $users = Auth::user();
-        // $mobilsAll = Mobil::all();
         return view(
             'user.dashboard.account'
-            // , [
-            //     'users' => $users,
-            // ]
         );
     }
     public function informasi()
@@ -84,7 +75,6 @@ class DashboardController extends Controller
     {
         $pengumumans = Pengumuman::where('slug', $slug)->firstOrFail();
         // dd($pengumumans);
-        // $pengumumansAll = Pengumuman::where('id', '!=', $pengumumans->id)->get();
         return view('user.dashboard.detailpengumuman', compact('pengumumans'));
     }
 
@@ -95,13 +85,5 @@ class DashboardController extends Controller
 
         return response()->json($books);
     }
-    // public function footer()
-    // {
-    //     $galeriFooter = Galeri::take(6)->latest()->get();
-    //     dd($galeriFooter);
-
-    //     return view('user.layout.main', [
-    //         'galeriFooter' => $galeriFooter
-    //     ]);
-    // }
+   
 }

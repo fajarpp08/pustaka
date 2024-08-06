@@ -87,7 +87,8 @@
 
                                     <div class="post__content">
                                         <h4 class="post__title" style="margin-bottom: 0px">
-                                            <a>{{ $galeri->judul_galeri }}</a></h4>
+                                            <a>{{ $galeri->judul_galeri }}</a>
+                                        </h4>
                                         <div class="post__meta">
                                             <span class="post__date"><svg xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24">

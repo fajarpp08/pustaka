@@ -65,7 +65,6 @@ class AuthController extends Controller
             'alamat' => 'required',
             'email' => 'required|unique:users',
             'nohp' => 'required|unique:users',
-            // 'noanggota' => 'required|unique:users',
             'password' => 'required',
 
         ], [
@@ -75,8 +74,6 @@ class AuthController extends Controller
             'email.unique' => 'Email ini sudah terdaftar, silahkan ganti!',
             'nohp.required' => 'Nomor HP harus diisi!',
             'nohp.unique' => 'Nomor HP ini sudah ada, silahkan ganti!',
-            // 'noanggota.required' => 'Nomor Anggota harus diisi!',
-            // 'noanggota.unique' => 'Nomor Anggota ini sudah ada, silahkan ganti!',
             'password.required' => 'Password harus diisi!',
         ]);
 

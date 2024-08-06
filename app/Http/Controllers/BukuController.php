@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
-use App\Models\Peminjaman;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BukuController extends Controller
@@ -17,7 +15,7 @@ class BukuController extends Controller
     public function index()
     {
         $bukus = Buku::paginate(10);
-        
+
         return view('admin.buku.index', compact('bukus'));
     }
 
@@ -98,7 +96,6 @@ class BukuController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'sinopsis' => 'required',
-            // 'kategori_id' => 'required',
             'kategori_id' => 'required|exists:kategoris,id',
             'gambar_buku' => 'nullable',
             'stok' => 'required|integer|min:0',
@@ -152,32 +149,7 @@ class BukuController extends Controller
         return view('admin.buku.index', compact('bukus', 'keyword'));
     }
 
-    // public function searchByStokDate(Request $request)
-    // {
-    //     $keyword = $request->input('keyword');
-    //     $tanggal = \Carbon\Carbon::parse($request->input('tanggal'))->format('Y-m-d');
-
-    //     // Ambil semua buku yang dipinjam pada tanggal yang diinput
-    //     $bukuDipinjam = Peminjaman::where('tgl_mulai', '<=', $tanggal)
-    //         ->where('tgl_akhir', '>=', $tanggal)
-    //         ->select('buku_id', DB::raw('count(*) as jumlah_peminjaman'))
-    //         ->groupBy('buku_id')
-    //         ->get();
-
-    //     // Filter buku yang stoknya sudah habis pada tanggal tersebut
-    //     $bukuTidakTersedia = $bukuDipinjam->filter(fn ($item) => Buku::find($item->buku_id)->stok <= $item->jumlah_peminjaman)
-    //         ->pluck('buku_id')->toArray();
-
-    //     // Query untuk mendapatkan buku yang tersedia
-    //     $bukus = Buku::whereNotIn('id', $bukuTidakTersedia)
-    //         ->where('stok', '>', 0) // Hanya buku yang stoknya lebih dari 0 yang akan ditampilkan
-    //         ->when($keyword, fn ($query) => $query->where('judul', 'like', "%$keyword%")
-    //             ->orWhere('penulis', 'like', "%$keyword%"))
-    //         ->get();
-
-    //     return view('user.dashboard.buku', compact('bukus', 'keyword', 'tanggal'));
-    // }
-
+    // fitur search user berdasarkan stok
     public function searchByStok(Request $request)
     {
         $keyword = $request->input('keyword');

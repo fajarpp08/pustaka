@@ -85,12 +85,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <span class="form-label">Total Harga</span>
-                                    <input class="form-control sign__input" type="text" id="total_harga"
-                                        name="total_harga" placeholder="Total Harga" data-harga="{{ $mobils->harga }}"
-                                        readonly>
-                                </div> --}}
                                 <div class="form-btn">
                                     <a href="/dashboarduser" type="button" class="go-back-btn">Kembali</a>
                                     <button type="submit" name="submit" class="submit-btn">Pesan</button>
@@ -102,34 +96,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('[data-confirm-delete]').forEach(function(form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const title = form.dataset.confirmTitle || 'Konfirmasi Hapus!';
-                    const text = form.dataset.confirmText ||
-                        'Apakah kamu yakin untuk menghapus ini?';
-
-                    Swal.fire({
-                        title: title,
-                        text: text,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Ya, Batal!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        }
-                    });
-                });
-            });
-        });
-    </script> --}}
 </body>
 
 </html>
