@@ -32,6 +32,7 @@
 </head>
 
 <body>
+
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -101,6 +102,34 @@
             </div>
         </div>
     </div>
+
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-confirm-delete]').forEach(function(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const title = form.dataset.confirmTitle || 'Konfirmasi Hapus!';
+                    const text = form.dataset.confirmText ||
+                        'Apakah kamu yakin untuk menghapus ini?';
+
+                    Swal.fire({
+                        title: title,
+                        text: text,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, Batal!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script> --}}
 </body>
 
 </html>

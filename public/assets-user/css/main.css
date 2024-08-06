@@ -568,6 +568,69 @@ body::-webkit-scrollbar-thumb {
 .header__phone {
   display: none;
 }
+
+/* Header Notifications */
+.header__profile-notif {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  top: 0;
+  border-radius: 20px;
+  padding: 16px;
+  min-width: 450px;
+  transition: 0.5s ease;
+  transition-property: margin-top, opacity;
+  transform: translate3d(0px, 42px, 0px);
+  height: auto;
+  background: linear-gradient(1turn, #f1f6fd 30%, #edf1f7);
+  box-shadow: 3px 3px 9px rgba(164,164,186,0.2);
+  border: 1px solid #fff;
+  right: 0 !important;
+  left: auto !important;
+  margin-top: -5px;
+}
+.header__profile-notif li {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.header__profile-notif li:last-child {
+  margin-bottom: 0;
+}
+.header__profile-notif a {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #4e5d78;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.5s ease;
+  position: relative;
+  font-family: 'Nunito', sans-serif;
+}
+.header__profile-notif a svg {
+  fill: #4e5d78;
+  width: 20px;
+  height: auto;
+  transition: fill 0.5s ease;
+  margin-right: 10px;
+}
+.header__profile-notif a:hover {
+  color: #33334f;
+}
+.header__profile-notif a:hover svg {
+  fill: #189cf4;
+}
+.header__profile-notif.show {
+  z-index: 1000;
+  pointer-events: auto;
+  opacity: 1;
+}
 @media (min-width: 576px) {
   .header__action-btn {
     width: auto;
@@ -5287,19 +5350,35 @@ body::-webkit-scrollbar-thumb {
     margin-top: 0;
     order: 1;
   } 
-  .footer__image-grid {
+  .footer__image-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    /* padding: 0%; */
+    grid-template-rows: repeat(2, 80px); /* 2 rows of 80px height */
+    gap: 5px; /* Reduced gap to make images closer */
+}
+
+.footer__image-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the rounded corners apply to the images */
+    border-radius: 10px; /* Add rounded corners */
+    width: 80px;
+    height: 80px;
+
 }
 
 .footer__image {
-  width: calc(50% - 10px); /* Adjust width to accommodate margin */
-  margin: 0px; /* Add margin to the left and right */
-  height: auto;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
 }
+
+.footer__image-grid:hover .footer__image {
+    transform: scale(1.1); /* Zoom in on hover */
+}
+
 
 }
 @media (min-width: 1200px) {

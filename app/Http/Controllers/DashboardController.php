@@ -35,12 +35,14 @@ class DashboardController extends Controller
     {
         $bukus = Buku::all();
         $pengumumans = Pengumuman::take(6)->get();
-        $galeris = Galeri::take(6)->get();
+        $galeris = Galeri::all();
+        $galeriFooter = Galeri::take(6)->latest()->get();
+        // dd($galeris);
 
         $user = Auth::user();
         $books = Peminjaman::leftJoin('bukus', 'peminjamans.buku_id', 'bukus.id')->where('user_id', $user->id)->get();
         // dd($books);
-        return view('user.dashboard.index', compact('bukus', 'galeris', 'pengumumans'));
+        return view('user.dashboard.index', compact('bukus', 'galeris', 'galeriFooter', 'pengumumans'));
     }
     public function buku()
     {
@@ -93,4 +95,13 @@ class DashboardController extends Controller
 
         return response()->json($books);
     }
+    // public function footer()
+    // {
+    //     $galeriFooter = Galeri::take(6)->latest()->get();
+    //     dd($galeriFooter);
+
+    //     return view('user.layout.main', [
+    //         'galeriFooter' => $galeriFooter
+    //     ]);
+    // }
 }

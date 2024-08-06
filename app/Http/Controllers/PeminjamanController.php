@@ -127,47 +127,32 @@ class PeminjamanController extends Controller
             'tgl_akhir' => 'required|date|after:tgl_mulai',
             'buku_id' => 'required|exists:bukus,id',
         ]);
+        try {
+            // Mengambil data user login
+            $user_id = Auth::id();
 
-        // Mengambil data user login
-        $user_id = Auth::id();
+            // Mengambil data buku 
+            $bukus = Buku::findOrFail($request->input('buku_id'));
 
-        // Mengambil data mobil 
-        $bukus = Buku::findOrFail($request->input('buku_id'));
+            // Isi data
+            $peminjamans = new Peminjaman();
+            $peminjamans->user_id = $user_id;
+            $peminjamans->tgl_mulai = $request->tgl_mulai;
+            $peminjamans->tgl_akhir = $request->tgl_akhir;
+            $peminjamans->buku_id = $request->buku_id;
 
-        // Isi data
-        $peminjamans = new Peminjaman();
-        $peminjamans->user_id = $user_id;
-        $peminjamans->tgl_mulai = $request->tgl_mulai;
-        $peminjamans->tgl_akhir = $request->tgl_akhir;
-        $peminjamans->buku_id = $request->buku_id;
+            // Save data 
+            $peminjamans->save();
 
-        // Save data 
-        $peminjamans->save();
+            // pengurangan stok
+            $bukus->decrement('stok');
 
-        // pengurangan stok
-        $bukus->decrement('stok');
-
-        // dd($peminjamans);
-        return redirect()->route('pinjaman')->with('success', 'Peminjaman buku berhasil dilakukan!');
+            return redirect()->route('pinjaman')->with('success', 'Peminjaman buku berhasil dilakukan!');
+        } catch (\Exception $err) {
+            // Menyimpan pesan error ke dalam session
+            return redirect()->route('pinjaman')->with('error', 'Peminjaman buku gagal dilakukan: ' . $err->getMessage());
+        }
     }
-
-    // public function pinjaman()
-    // {
-    //     $user = Auth::user();
-    //     // Mengambil data peminjaman dari data user yang login
-    //     $pinjamanUser = $user->peminjamans ?? collect();
-
-    //     // Mengambil data peminjaman 
-    //     $pinjamanPagination = Peminjaman::paginate(6);
-
-    //     $pinjamanUser->each(function ($pinjamans) {
-    //         $pinjamans->status_kembali = $pinjamans->pengembalian()->exists();
-    //     });
-
-    //     // dd($pinjamanUser);
-    //     return view('user.dashboard.peminjaman', compact('pinjamanUser', 'pinjamanPagination'));
-    // }
-
 
     public function pinjaman()
     {

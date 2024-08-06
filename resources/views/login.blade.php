@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rental Mobil</title>
-    <link rel="icon" href="{{ asset('assets-admin/img/car-rent-logo-web.png') }}" type="image/png">
+    <title>Perpustakaan MTsN 4 Kota Padang</title>
+    <link rel="icon" href="{{ asset('../assets-user/img/logo-sekolah.png') }}" type="image/png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('assets-user/css/bootstrap.min.css') }}">
@@ -34,7 +34,7 @@
                 <form action="login" class="sign__form" method="POST">
                     @csrf
                     <a href="/" class="sign__logo">
-                        <img src="../assets-user/img/car-logo.png" alt="">
+                        <img src="../assets-user/img/logo.png" alt="">
                     </a>
 
                     <div class="sign__group">

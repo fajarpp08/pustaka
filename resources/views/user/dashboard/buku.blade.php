@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <ul class="breadcrumbs">
                         <li class="breadcrumbs__item"><a href="/dashboarduser">Home</a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item--active">Explore Book</li>
+                        <li class="breadcrumbs__item breadcrumbs__item--active">Buku</li>
                     </ul>
                 </div>
                 <!-- end breadcrumb -->
@@ -79,7 +79,7 @@
                                 <a href="{{ route('buku.detail', ['slug' => $buku->slug]) }}"
                                     class="car__detail"><span>Detail</span></a>
                                 <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
-                                    data-harga="{{ $buku->harga }}" class="car__more"><span>Pinjam</span></a>
+                                    data-harga="{{ $buku->stok }}" class="car__more"><span>Pinjam</span></a>
                             </div>
                         </div>
                     </div>
