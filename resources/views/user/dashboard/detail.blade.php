@@ -1,11 +1,19 @@
 @extends('user.layout.main')
 
 @section('content')
-    <!-- header -->
-    <!-- end header -->
-
     <!-- main content -->
     <main class="main">
+        {{-- call pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" id="error-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end call pesan error --}}
         <div class="container">
             <section class="row">
                 <!-- breadcrumb -->
@@ -79,7 +87,8 @@
                         <span class="offer__title">Detail buku</span>
                         <div class="offer__wrap">
                             <span class="offer__price">{{ $bukus->judul }}</span>
-                            <a href="" type="button" class="offer__rent"><span>Pinjam</span></a>
+                            <a href="{{ route('pinjam.form', ['buku_id' => $bukus->id]) }}" type="button"
+                                class="offer__rent"><span>Pinjam</span></a>
                         </div>
 
                         {{-- <span class="offer__title">Detail Mobil</span> --}}
@@ -181,66 +190,4 @@
     </main>
     <!-- end main content -->
 
-    <!-- rent modal -->
-    <div class="modal fade" id="rent-modal" tabindex="-1" aria-labelledby="rent-modal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal__content">
-                    <button class="modal__close" type="button" data-bs-dismiss="modal" aria-label="Close"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path
-                                d="M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z" />
-                        </svg></button>
-
-                    <form action="#" class="modal__form">
-                        <h4 class="modal__title">Rent car</h4>
-
-                        <div class="sign__group">
-                            <label for="fullname" class="sign__label sign__label--modal">Name</label>
-                            <input id="fullname" type="text" name="name" class="sign__input"
-                                placeholder="Full name">
-                        </div>
-
-                        <div class="sign__group">
-                            <label for="phone" class="sign__label sign__label--modal">Phone</label>
-                            <input id="phone" type="text" name="phone" class="sign__input"
-                                placeholder="090 123 45 67">
-                        </div>
-
-                        <div class="sign__group">
-                            <label for="delivery" class="sign__label sign__label--modal">Car delivery address</label>
-                            <input id="delivery" type="text" name="delivery" class="sign__input"
-                                placeholder="221B Baker St, Marylebone, London">
-
-                            <span class="sign__text sign__text--left">You can spend money from your account on the renewal
-                                of the connected packages, or on the purchase of goods on our website.</span>
-                        </div>
-
-                        <div class="sign__group">
-                            <label class="sign__label sign__label--modal">Payment method:</label>
-
-                            <ul class="sign__radio">
-                                <li>
-                                    <input id="type1" type="radio" name="type" checked="">
-                                    <label for="type1">Visa</label>
-                                </li>
-                                <li>
-                                    <input id="type2" type="radio" name="type">
-                                    <label for="type2">Mastercard</label>
-                                </li>
-                                <li>
-                                    <input id="type3" type="radio" name="type">
-                                    <label for="type3">Paypal</label>
-                                </li>
-                            </ul>
-                        </div>
-                        <button type="button" class="sign__btn sign__btn--modal">
-                            <span>Proceed</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end rent modal -->
 @endsection

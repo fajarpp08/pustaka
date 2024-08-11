@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -25,7 +25,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($galeris->sortByDesc('created_at') as $galeri)
+                                    @foreach ($galeris as $galeri)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $galeri->judul_galeri }}</td>
@@ -62,12 +62,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($galeris) && $galeris instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $galeris->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>

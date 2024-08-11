@@ -7,8 +7,8 @@
             <div class="col-12 col-xl-10 offset-xl-1">
                 <ul class="breadcrumbs">
                     <li class="breadcrumbs__item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumbs__item"><a href="blog.html">Blog</a></li>
-                    <li class="breadcrumbs__item breadcrumbs__item--active">Article</li>
+                    <li class="breadcrumbs__item"><a href="blog.html">Informasi</a></li>
+                    <li class="breadcrumbs__item breadcrumbs__item--active">Detail Pengumuman</li>
                 </ul>
             </div>
             <!-- end breadcrumb -->

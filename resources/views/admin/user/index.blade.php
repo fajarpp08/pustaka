@@ -13,7 +13,7 @@
                         <div class="white_box_tittle list_header">
                             <h4>Data User</h4>
                             <div class="box_right d-flex lms_block">
-                                <div class="serach_field_2">
+                                {{-- <div class="serach_field_2">
                                     <div class="search_inner">
                                         <div class="search_field">
                                             <input type="text" name="keyword"
@@ -22,7 +22,7 @@
                                         </div>
                                         <button type="submit"> <i class="ti-search"></i> </button>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- </form> --}}
                                 <div class="add_button ms-2">
                                     <a href="/data-user/create" class="btn_1">Add New</a>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -75,12 +75,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($users) && $users instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $users->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>

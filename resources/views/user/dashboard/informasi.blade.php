@@ -80,7 +80,7 @@
                         @foreach ($galeris as $galeri)
                             <div class="col-12 col-md-6 col-xl-4">
                                 <div class="post">
-                                    <a href="/informasi" class="post__img">
+                                    <a href="#" class="post__img">
                                         <img src="{{ asset('storage/galeri/' . $galeri->gambar_galeri) }}" alt=""
                                             style="height: 400px; object-fit: cover;">
                                     </a>

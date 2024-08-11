@@ -36,7 +36,7 @@
                         </form>
 
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -77,12 +77,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($pengembalians) && $pengembalians instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $pengembalians->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,17 @@
 </head>
 
 <body>
-
+    {{-- call pesan error --}}
+    @if ($errors->any())
+        <div class="alert alert-danger" id="error-alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {{-- end call pesan error --}}
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -96,6 +106,12 @@
             </div>
         </div>
     </div>
+    <script>
+        // Setelah 3 detik, sembunyikan pesan error
+        setTimeout(function() {
+            document.getElementById('error-alert').style.display = 'none';
+        }, 3000);
+    </script>
 </body>
 
 </html>

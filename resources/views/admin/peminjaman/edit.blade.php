@@ -60,6 +60,30 @@
                                     </div>
                                 @enderror
                             </div>
+                            {{-- status --}}
+                            {{-- <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlSelect1">Status</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="buku_id">
+                                    @foreach ($bukus as $buku)
+                                        @if (old('buku_id', $peminjamans->status_kembali) == $buku->id)
+                                            <option value="{{ $buku->id }}" selected>{{ $buku->status_kembali }}</option>
+                                        @else
+                                            <option value="{{ $buku->id }}">{{ $buku->status_kembali }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <label class="form-label" for="status_kembali">Status Pengembalian</label>
+                                <select class="form-control" id="status_kembali" name="status_kembali">
+                                    <option value="false" {{ !$peminjamans->status_kembali ? 'selected' : '' }}>Proses
+                                    </option>
+                                    <option value="true" {{ $peminjamans->status_kembali ? 'selected' : '' }}>Selesai
+                                    </option>
+                                </select>
+                            </div>
+                            {{-- end status --}}
                             <div class="container mt-3">
                                 <div class="row">
                                     <div class="col-auto">

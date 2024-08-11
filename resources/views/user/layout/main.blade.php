@@ -81,6 +81,12 @@
             setInterval(updateDay, 1000);
         }
     </script>
+    <script>
+        // Setelah 3 detik, sembunyikan pesan error
+        setTimeout(function() {
+            document.getElementById('error-alert').style.display = 'none';
+        }, 3000);
+    </script>
 </body>
 
 </html>

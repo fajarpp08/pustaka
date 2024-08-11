@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -31,7 +31,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $pengumuman->judul_pengumuman }}</td>
                                             <td>{{ $pengumuman->deskripsi_pengumuman }}</td>
-                                            <td>{{ $pengumuman->tanggal_pengumuman }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($pengumuman->tanggal_pengumuman)->isoFormat('DD MMMM YYYY') }}</td>
                                             <td>
                                                 @if ($pengumuman->gambar_pengumuman)
                                                     <img src="{{ asset('storage/pengumuman/' . $pengumuman->gambar_pengumuman) }}"
@@ -64,12 +64,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($beritas) && $beritas instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $beritas->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>

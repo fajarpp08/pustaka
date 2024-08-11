@@ -10,17 +10,18 @@ use Illuminate\Support\Facades\Validator;
 class BukuController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar semua buku yang ada dalam sistem.
+     * Data buku diambil dari database dan ditampilkan pada halaman 'admin.buku.index'.
      */
     public function index()
     {
-        $bukus = Buku::paginate(10);
-
+        $bukus = Buku::all();
         return view('admin.buku.index', compact('bukus'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk menambahkan buku baru ke dalam sistem.
+     * Kategori buku diambil dari database untuk ditampilkan sebagai pilihan.
      */
     public function create()
     {
@@ -30,7 +31,9 @@ class BukuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data buku baru yang diinputkan oleh pengguna melalui form.
+     * Data divalidasi terlebih dahulu sebelum disimpan ke database.
+     * Jika terdapat file gambar, file tersebut akan disimpan di penyimpanan lokal.
      */
     public function store(Request $request)
     {
@@ -75,7 +78,8 @@ class BukuController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengedit data buku yang sudah ada.
+     * Data buku yang akan diedit diambil berdasarkan ID yang diberikan.
      */
     public function edit(string $id)
     {
@@ -86,7 +90,9 @@ class BukuController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data buku yang sudah ada berdasarkan input pengguna.
+     * Data divalidasi terlebih dahulu sebelum disimpan ke database.
+     * Jika terdapat file gambar baru, file tersebut akan menggantikan yang lama.
      */
     public function update(Request $request, string $id)
     {
@@ -127,7 +133,8 @@ class BukuController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data buku dari database berdasarkan ID yang diberikan.
+     * Setelah dihapus, pengguna akan diarahkan kembali ke halaman daftar buku.
      */
     public function destroy(string $id)
     {
@@ -135,20 +142,10 @@ class BukuController extends Controller
         return redirect('/data-buku')->with('message', 'Data buku berhasil dihapus!');
     }
 
-    // fitur search admin 
-    public function searchByName(Request $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $bukus = Buku::where(function ($query) use ($keyword) {
-            $query->where('judul', 'like', "%$keyword%")
-                ->orWhere('penulis', 'like', "%$keyword%");
-            // ->orWhere('noplat', 'like', "%$keyword%");
-        })->paginate(10);
-
-        return view('admin.buku.index', compact('bukus', 'keyword'));
-    }
-
+    /**
+     * Fitur pencarian buku di halaman user berdasarkan ketersediaan stok.
+     * Hanya buku yang stoknya lebih dari 0 yang akan ditampilkan.
+     */
     // fitur search user berdasarkan stok
     public function searchByStok(Request $request)
     {
@@ -156,7 +153,7 @@ class BukuController extends Controller
 
         // Query untuk mendapatkan buku yang tersedia berdasarkan stok
         $bukus = Buku::where('stok', '>', 0) // Hanya buku yang stoknya lebih dari 0 yang akan ditampilkan
-            ->when($keyword, fn ($query) => $query->where('judul', 'like', "%$keyword%")
+            ->when($keyword, fn($query) => $query->where('judul', 'like', "%$keyword%")
                 ->orWhere('penulis', 'like', "%$keyword%"))
             ->get();
 

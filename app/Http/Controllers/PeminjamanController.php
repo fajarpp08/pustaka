@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjamans = Peminjaman::paginate(10); // 10 items per page
+        $peminjamans = Peminjaman::latest()->get(); // 10 items per page
 
         return view('admin.peminjaman.index', compact('peminjamans'));
     }
@@ -34,35 +34,56 @@ class PeminjamanController extends Controller
             'bukus' => Buku::all(),
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $peminjamans = Peminjaman::findOrFail($id);
 
+        // Validasi input
         $validatedData = $request->validate([
-            'tgl_mulai' => 'required',
-            'tgl_akhir' => 'required',
-            'buku_id' => 'required',
-            'user_id' => 'required',
+            'tgl_mulai' => 'required|date',
+            'tgl_akhir' => 'required|date|after:tgl_mulai',
+            'buku_id' => 'required|exists:bukus,id',
+            'user_id' => 'required|exists:users,id',
         ], [
-
-            'tgl_mulai.required' => 'kolom tanggal harus diisi',
-            'tgl_akhir.required' => 'kolom tanggal harus diisi',
-            'buku_id.required' => 'kolom buku harus diisi',
-            'user_id.required' => 'kolom user harus diisi',
+            'tgl_mulai.required' => 'Kolom tanggal mulai harus diisi',
+            'tgl_akhir.required' => 'Kolom tanggal akhir harus diisi',
+            'buku_id.required' => 'Kolom buku harus diisi',
+            'user_id.required' => 'Kolom pengguna harus diisi',
         ]);
-        // dd($peminjamans);
+
+        // Update data peminjaman
         $peminjamans->tgl_mulai = $validatedData['tgl_mulai'];
         $peminjamans->tgl_akhir = $validatedData['tgl_akhir'];
         $peminjamans->buku_id = $validatedData['buku_id'];
         $peminjamans->user_id = $validatedData['user_id'];
 
+        // Ambil status_kembali dari request secara langsung
+        $statusKembali = $request->input('status_kembali', false);
+
+        // Periksa apakah status_kembali diubah menjadi selesai (true)
+        if ($statusKembali == true && !$peminjamans->status_kembali) {
+            // Logika pengembalian buku
+            $peminjamans->status_kembali = true;
+
+            // Menambahkan data ke tabel pengembalian
+            $pengembalian = new Pengembalian([
+                'tgl_kembali' => now(), // Tanggal saat pengembalian
+            ]);
+            $peminjamans->pengembalian()->save($pengembalian);
+
+            // Menambah stok buku
+            $buku = Buku::findOrFail($peminjamans->buku_id);
+            $buku->stok += 1;
+            $buku->save();
+        } elseif ($statusKembali == false && $peminjamans->status_kembali) {
+            // $peminjamans->status_kembali = false;
+            return redirect('/data-peminjaman')->with('error', 'Status pengembalian tidak dapat diubah menjadi proses lagi, silahkan pinjam baru saja!');
+        }
+
+        // Simpan perubahan peminjaman
         $peminjamans->save();
 
-        return redirect('/data-peminjaman')->with('message', 'Data berhasil diubah.');
+        return redirect('/data-peminjaman')->with('message', 'Data peminjaman berhasil diperbarui.');
     }
 
     /**
@@ -149,41 +170,6 @@ class PeminjamanController extends Controller
 
         // dd($completedPinjamans);
         return view('user.dashboard.peminjaman', compact('ongoingPinjamans', 'completedPinjamans'));
-    }
-
-
-    public function kembalikan($peminjamanId)
-    {
-        // Membuat data $peminjamanId adalah tipe data integer
-        $peminjamanId = (int)$peminjamanId;
-
-        // Cek data id peminjaman
-        $peminjaman = Peminjaman::find($peminjamanId);
-
-        // validasi jika tidak ada data peminjaman
-        if (!$peminjaman) {
-            return redirect()->route('pinjaman')->with('error', 'Data peminjaman tidak ditemukan!');
-        }
-
-        // Menambahkan data ke tabel pengembalian
-        $pengembalian = new Pengembalian([
-            // Input data tgl_kembali otomatis sesuai tanggal pada saat dikembalikan 
-            'tgl_kembali' => now(),
-        ]);
-
-        // Membuat data status_kembali menjadi true = 1
-        $peminjaman->status_kembali = true;
-        $peminjaman->save();
-        // dd($peminjaman);
-        $peminjaman->pengembalian()->save($pengembalian);
-
-
-        // Menambah stok buku
-        $buku = Buku::find($peminjaman->buku_id);
-        $buku->stok += 1;
-        $buku->save();
-
-        return redirect()->route('pinjaman')->with('success', 'Buku telah dikembalikan.');
     }
 
     // laporan 

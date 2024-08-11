@@ -10,7 +10,7 @@ class PengumumanController extends Controller
 {
     public function index()
     {
-        $pengumumans = Pengumuman::paginate(6);
+        $pengumumans = Pengumuman::all();
 
         return view('admin.pengumuman.index', compact('pengumumans'));
     }

@@ -14,7 +14,7 @@
                     <br>Kec. Lubuk Begalung, Kota Padang, Sumatera Barat 25154
                 </p>
                 <a class="footer__tagline"
-                    href="{{ url('mailto:puskesmasulakkarang@gmail.com') }}"><span>mtsn4padang@gmail.com</span>
+                    href="{{ url('mailto:rifkimulfianda03@gmail.com') }}"><span>mtsn4padang@gmail.com</span>
                 </a>
                 <a class="footer__tagline" href="{{ url('tel:+6281374066815') }}">tel : <span>+6281374066815</span>
                 </a>

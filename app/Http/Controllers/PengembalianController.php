@@ -13,7 +13,7 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        $pengembalians = Pengembalian::paginate(10); // 10 items per page
+        $pengembalians = Pengembalian::all(); // 10 items per page
 
         return view('admin.pengembalian.index', compact('pengembalians'));
     }

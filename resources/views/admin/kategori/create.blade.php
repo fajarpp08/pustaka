@@ -15,8 +15,8 @@
                             <div class="mb-3">
                                 <label class="form-label" for="exampleFormControlInput1">Nama Kategori</label>
                                 <input type="text" id="exampleFormControlInput1" placeholder="Masukkan kategori buku"
-                                    class="form-control @error('nama_kategori') is-invalid @enderror" value="{{ old('nama_kategori') }}"
-                                    name="nama_kategori">
+                                    class="form-control @error('nama_kategori') is-invalid @enderror"
+                                    value="{{ old('nama_kategori') }}" name="nama_kategori">
                                 @error('nama_kategori')
                                     <div class="invalid-feedback">
                                         {{ $message }}

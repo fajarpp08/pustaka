@@ -13,10 +13,11 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::paginate(10);
+        $kategoris = Kategori::all();
 
         return view('admin.kategori.index', compact('kategoris'));
     }
+
 
     /**
      * Show the form for creating a new resource.

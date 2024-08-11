@@ -13,8 +13,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="QA_table mb_30">
-                            <table class="table">
+                         <div class="QA_table mb_30">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -28,7 +28,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bukus->sortByDesc('created_at') as $buku)
+                                    @foreach ($bukus as $buku)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $buku->judul }}</td>
@@ -71,11 +71,11 @@
                             </table>
                         </div>
                         {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
+                        {{-- <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
                             @if (isset($bukus) && $bukus instanceof \Illuminate\Pagination\LengthAwarePaginator)
                                 {{ $bukus->links('pagination::bootstrap-5') }}
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

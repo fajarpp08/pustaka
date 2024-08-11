@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 @section('content')
-    <div class="main_content_iner ">
+    <div class="main_content_iner">
         <div class="container-fluid p-0">
             <div class="row justify-content-center">
                 <div class="col-lg-12">

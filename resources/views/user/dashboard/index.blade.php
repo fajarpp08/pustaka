@@ -2,6 +2,17 @@
 
 @section('content')
     <main class="main">
+        {{-- call pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" id="error-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end call pesan error --}}
         <!-- home -->
         <div class="home">
             <!-- home bg -->

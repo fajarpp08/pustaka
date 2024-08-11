@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{{ asset('assets-user/css/main.css') }}">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="{{ asset('assets-user/icon/favicon-32x32.png') }}" sizes="32x32">
-    <link rel="apple-touch-icon" href="{{ asset('assets-user/icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('../assets-user/img/logo-sekolah.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ asset('../assets-user/img/logo-sekolah.png') }}">
 
     <meta name="description" content="Car rental HTML Template">
     <meta name="keywords" content="">
@@ -86,7 +86,7 @@
 
                     <div class="sign__group sign__group--checkbox">
                         <input id="privacy" name="privacy" type="checkbox">
-                        <label for="privacy">I agree to the <a href="privacy.html">Privacy Policy</a></label>
+                        <label for="privacy">I agree to the <a href="#">Privacy Policy</a></label>
                     </div>
 
                     <button class="sign__btn" type="submit" name="submit"><span>Sign up</span></button>

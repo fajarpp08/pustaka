@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -28,7 +28,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($kategoris->sortByDesc('created_at') as $kategori)
+                                    @foreach ($kategoris as $kategori)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $kategori->nama_kategori }}</td>
@@ -57,11 +57,11 @@
                             </table>
                         </div>
                         {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
+                        {{-- <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
                             @if (isset($kategoris) && $kategoris instanceof \Illuminate\Pagination\LengthAwarePaginator)
                                 {{ $kategoris->links('pagination::bootstrap-5') }}
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

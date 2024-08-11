@@ -13,12 +13,13 @@ class Buku extends Model
     use HasSlug;
 
     protected $fillable = ['judul', 'penulis', 'sinopsis', 'gambar_buku', 'kategori_id'];
-
+    // field apa saja yg wajib diisi
     protected $guarded = [];
 
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
+        // merelasikan model buku ke model kategori berdasarkan dari field kategori_id yang ada di tabel buku
     }
 
     public function getSlugOptions(): SlugOptions
@@ -30,5 +31,6 @@ class Buku extends Model
     public function peminjamans()
     {
         return $this->hasMany(Peminjaman::class);
+        // merelasikan model peminjaman kepada model buku sbg hasMany
     }
 }

@@ -2,6 +2,18 @@
 
 @section('content')
     <main class="main">
+        {{-- call pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" id="error-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end call pesan error --}}
+
         <div class="container">
             <div class="row">
                 <!-- breadcrumb -->
@@ -72,14 +84,23 @@
                                 <h3 class="car__name"><a
                                         href="{{ route('buku.detail', ['slug' => $buku->slug]) }}">{{ $buku->judul }}</a>
                                 </h3>
-                                <span class="car__year">{{ $buku->stok }}</span>
+                                <span class="car__year">Stok : {{ $buku->stok }}</span>
                             </div>
                             <div class="car__footer">
                                 <span class="car__price">{{ $buku->penulis }}</span>
                                 <a href="{{ route('buku.detail', ['slug' => $buku->slug]) }}"
                                     class="car__detail"><span>Detail</span></a>
-                                <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
-                                    data-harga="{{ $buku->stok }}" class="car__more"><span>Pinjam</span></a>
+                                @if ($buku->stok > 0)
+                                    <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
+                                        data-harga="{{ $buku->stok }}" class="car__more">
+                                        <span>Pinjam</span>
+                                    </a>
+                                @else
+                                    <a href="{{ route('pinjam.form', ['buku_id' => $buku->id]) }}"
+                                        data-harga="{{ $buku->stok }}" class="car__more" style="cursor: not-allowed">
+                                        <span>Pinjam</span>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

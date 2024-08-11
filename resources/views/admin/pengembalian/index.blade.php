@@ -1,27 +1,26 @@
 @extends('admin.layout.main')
 @section('content')
     <div class="main_content_iner ">
+        {{-- call pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" id="error-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end call pesan error --}}
         <div class="container-fluid p-0">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="QA_section">
                         <div class="white_box_tittle list_header">
                             <h4>Data Pengembalian Buku</h4>
-                            <div class="box_right d-flex lms_block">
-                                <div class="serach_field_2">
-                                    <div class="search_inner">
-                                        <form Active="#">
-                                            <div class="search_field">
-                                                <input type="text" placeholder="Search content here...">
-                                            </div>
-                                            <button type="submit"> <i class="ti-search"></i> </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -29,7 +28,7 @@
                                         <th scope="col">Nomor Anggota</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Judul</th>
-                                        <th scope="col">Penulis</th>
+                                        {{-- <th scope="col">Penulis</th> --}}
                                         <th scope="col">Tanggal Kembali</th>
                                         {{-- <th scope="col">Status</th> --}}
                                         <th scope="col">Action</th>
@@ -69,13 +68,13 @@
                                                     Data tidak ditemukan
                                                 @endif
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 @if ($pengembalian->peminjaman && $pengembalian->peminjaman->buku)
                                                     {{ $pengembalian->peminjaman->buku->penulis }}
                                                 @else
                                                     Data tidak ditemukan
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             <td>{{ \Carbon\Carbon::parse($pengembalian->tgl_kembali)->isoFormat('DD MMMM YYYY') }}
                                             </td>
                                             <td>
@@ -101,12 +100,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($pengembalians) && $pengembalians instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $pengembalians->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>

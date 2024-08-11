@@ -2,6 +2,17 @@
 @section('content')
     <!-- main content -->
     <main class="main">
+        {{-- call pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" id="error-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- end call pesan error --}}
         <div class="container">
             {{-- DAFTAR PEMINJAMAN  --}}
 
@@ -75,7 +86,7 @@
                                                                             -
                                                                             {{ \Carbon\Carbon::parse($daftarPinjaman->tgl_akhir)->isoFormat('DD MMMM YYYY') }}</span>
                                                                     </td>
-                                                                    <td>
+                                                                    {{-- <td>
                                                                         <form
                                                                             action="{{ route('kembalikan', ['pinjam' => $daftarPinjaman->id]) }}"
                                                                             method="post">
@@ -91,7 +102,7 @@
                                                                                 </svg>
                                                                             </button>
                                                                         </form>
-                                                                    </td>
+                                                                    </td> --}}
                                                                 </tr>
                                                             </tbody>
                                                         @endif

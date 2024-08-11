@@ -36,7 +36,7 @@
                         </form>
 
                         <div class="QA_table mb_30">
-                            <table class="table">
+                            <table class="table lms_table_active" id="myTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -44,8 +44,7 @@
                                         <th scope="col">Nomor Anggota</th>
                                         <th scope="col">Judul Buku</th>
                                         <th scope="col">Penulis</th>
-                                        <th scope="col">Tanggal Mulai</th>
-                                        <th scope="col">Tanggal Akhir</th>
+                                        <th scope="col">Lama Peminjaman</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -93,12 +92,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        {{-- pagination --}}
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 mt-2 px-4">
-                            @if (isset($peminjamans) && $peminjamans instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $peminjamans->links('pagination::bootstrap-5') }}
-                            @endif
                         </div>
                     </div>
                 </div>
